@@ -46,7 +46,19 @@ export default {
 
 <style>
     canvas {
-        background-color: rgb(255, 255, 255);
-        border: 1px solid black;
+          background-color: rgb(255, 255, 255);
+          border: 1px solid black;
+          width: 320px;
+          height: 320px;
     }
+
+    @media only screen and (min-width: 800px) {
+      canvas {
+          width: 800px;
+          height: 800px;
+      }
+    }
+
+
+
 </style>
