@@ -1,21 +1,11 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <TestChart></TestChart>
+  <div id="nav">
+    <router-link to="/">Trafik meddelanden</router-link> |
+    <router-link to="/podtree">Pod Trädet</router-link> |
+    <router-link to="/musictimeline">Musik timeline</router-link>
+  </div>
+  <router-view/>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-import TestChart from './components/TestChart.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-    TestChart
-  }
-}
-</script>
 
 <style>
 #app {
@@ -24,6 +14,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
