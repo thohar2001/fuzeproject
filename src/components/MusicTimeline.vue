@@ -39,6 +39,12 @@ export default {
           "Titel Artist",
         ],
       },
+      yaxis: {
+        reversed: false,
+        axisTicks: {
+          show: true,
+        },
+      },
     };
 
     var options2 = {
@@ -51,54 +57,23 @@ export default {
         type: "bar",
         height: 350,
       },
-      annotations: {
-        xaxis: [
-          {
-            x: 500,
-            borderColor: "#00E396",
-            label: {
-              borderColor: "#00E396",
-              style: {
-                color: "#fff",
-                background: "#00E396",
-              },
-              text: "X annotation",
-            },
-          },
-        ],
-        yaxis: [
-          {
-            y: "July",
-            y2: "September",
-            label: {
-              text: "Y annotation",
-            },
-          },
-        ],
-      },
       plotOptions: {
         bar: {
+          borderRadius: 4,
           horizontal: true,
         },
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
       },
       xaxis: {
         categories: [
-        "Titel Artist",
-        "Titel Artist",
-        "Titel Artist",
-        "Titel Artist",
-        "Titel Artist",
+          "Titel Artist",
+          "Titel Artist",
+          "Titel Artist",
+          "Titel Artist",
+          "Titel Artist",
         ],
-      },
-      grid: {
-        xaxis: {
-          lines: {
-            show: true,
-          },
-        },
       },
       yaxis: {
         reversed: true,
@@ -125,5 +100,4 @@ export default {
 #chart2 {
   padding-right: 50%;
 }
-
 </style>
