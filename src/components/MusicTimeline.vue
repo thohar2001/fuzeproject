@@ -7,6 +7,7 @@
 <script>
 import ApexCharts from "apexcharts";
 
+
 export default {
   name: "TestChart",
 
