@@ -1,104 +1,80 @@
 <template>
   <h3>Music timeline will be displayed here.</h3>
-  <div id="chart"></div>
-  <div id="chart2"></div>
+
+  <label>
+    Year:
+    <select ref="year" @change="dateUpdated">
+      <option v-for="(y, index) in yearList" :value="y" :key="index">{{ y }}</option>
+    </select>
+  </label>
+
+  <label>
+  From:
+  <select ref="monthFrom" @change="dateUpdated">
+    <option v-for="(m, index) in monthlist" :value="m" :key="index">{{ m }}</option>
+  </select>
+  </label>
+
+  <label>
+  To:
+  <select ref="monthTo" @change="dateUpdated">
+    <option v-for="(m, index) in monthlist" :value="m" :key="index">{{ m }}</option>
+  </select>
+  </label>
+
+  <!-- create barcharts for each month -->
+  
+  <template v-for="i in timerangeInMonths">
+    <template v-if="i%2 == 0">
+      <!-- create left facing barchart -->
+      <bar-chart :reversed="false" :id="String(i)" :key="i"></bar-chart>    
+    </template>
+    <template v-else>
+      <!-- create right facing barchart -->
+      <bar-chart :reversed="true" :id="String(i)" :key="i"></bar-chart>
+    </template>
+  </template>
+  
+<!--
+  <bar-chart :reversed="false"></bar-chart>
+  <bar-chart
+    :reversed="true"
+    :startdate="'2020-02-10'"
+    :enddate="'2020-02-17'"
+  ></bar-chart>
+  <bar-chart :reversed="false"></bar-chart>
+  <bar-chart></bar-chart>
+  -->
 </template>
 
 <script>
-import ApexCharts from "apexcharts";
-
+import BarChart from "../components/BarChart.vue";
 
 export default {
-  name: "TestChart",
-
-  mounted() {
-    var options = {
-      series: [
-        {
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
-        },
-      ],
-      chart: {
-        type: "bar",
-        height: 350,
-      },
-      plotOptions: {
-        bar: {
-          borderRadius: 4,
-          horizontal: true,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      xaxis: {
-        categories: [
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-        ],
-      },
-      yaxis: {
-        reversed: false,
-        axisTicks: {
-          show: true,
-        },
-      },
-    };
-
-    var options2 = {
-      series: [
-        {
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
-        },
-      ],
-      chart: {
-        type: "bar",
-        height: 350,
-      },
-      plotOptions: {
-        bar: {
-          borderRadius: 4,
-          horizontal: true,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      xaxis: {
-        categories: [
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-        ],
-      },
-      yaxis: {
-        reversed: true,
-        axisTicks: {
-          show: true,
-        },
-      },
-    };
-
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
-
-    var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-    chart2.render();
+  name: "Home",
+  components: {
+    BarChart,
   },
+  data() {
+    return {
+      monthlist: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      yearList: [2018, 2019, 2020, 2021],
+      timerangeInMonths: 0
+    };
+  },
+  methods: {
+    dateUpdated() {
+      console.log("Date is now " + this.$refs.year.value + "-" + this.$refs.monthTo.value + "-" + this.$refs.monthTo.value)
+      this.timerangeInMonths = Number(this.$refs.monthTo.value) - Number(this.$refs.monthFrom.value)
+    }
+  }, mounted() {
+    this.dateUpdated()
+  }
 };
 </script>
 
-<style>
-#chart {
-  padding-left: 50%;
-}
-
-#chart2 {
-  padding-right: 50%;
+<style scoped>
+label{
+  margin: 1em 1em;
 }
 </style>

@@ -107,10 +107,11 @@ export async function countArtistOccurences(channels) {
   for (const id of channels) {
     const playlist = await getPlaylist(id);
     for (const song of playlist) {
-      if (artistCount[song.artist]) {
-        artistCount[song.artist]++;
+      console.log(song.artist + ": " + id);
+      if (artistCount[song.artist+":"+song.title]) {
+        artistCount[song.artist+":"+song.title]++;
       } else {
-        artistCount[song.artist] = 1;
+        artistCount[song.artist+":"+song.title] = 1;
       }
     }
   }
@@ -135,18 +136,7 @@ export function getTopArtists(artistCount, numResults) {
     artistList.push({ name: name, count: artistCount[name] });
   }
   artistList.sort((o1, o2) => o2.count - o1.count);
-  return artistList.slice(0, numResults).map((o) => o.name);
+  return artistList.slice(0, numResults).map((o) => o.name + "¤" + o.count);
 }
-
-getTopFiveArtists().then((res) => {
-  const top5 = document.getElementById("top5");
-  top5.innerHTML = "";
-  for (const name of res) {
-    const li = document.createElement("li");
-    li.innerText = name;
-    top5.append(li);
-  }
-
-});
 
 
