@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import TrafficMessages from '../components/TrafficMessages.vue'
-import Podtree from '../components/PodTree.vue'
-import Musictimeline from '../components/MusicTimeline.vue'
+import TrafficMessages from '../views/TrafficMessages.vue'
+import Podtree from '../views/PodTree.vue'
+import Musictimeline from '../views/MusicTimeline.vue'
 
 const routes = [
   {

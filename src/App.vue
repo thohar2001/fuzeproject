@@ -1,11 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Trafik meddelanden</router-link> |
-    <router-link to="/podtree">Pod Trädet</router-link> |
-    <router-link to="/musictimeline">Musik timeline</router-link>
-  </div>
-  <router-view/>
+    <Menu></Menu>
+    <br>
 </template>
+
+<script>
+import Menu from '../src/components/Menu.vue'
+
+export default {
+  components: {
+    Menu,
+  }
+}
+</script>
 
 <style>
 #app {
