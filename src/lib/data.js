@@ -95,37 +95,47 @@ export async function getAllChannelIds() {
   return result;
 }
 
-export async function getTopFiveArtists(startdate, enddate) {
+export async function getTopFiveArtists(year, month) {
+  
   const channels = [164];
-  //console.log("getTopFiveArtists channels=" + channels)
-  const artistCount = await countArtistOccurences(channels, startdate, enddate);
+  const artistCount = await countArtistOccurences(channels, year, month);
   return getTopArtists(artistCount, 5);
 }
 
-export async function countArtistOccurences(channels, startdate, enddate) {
+export async function countArtistOccurences(channels, year, month) {
+  const amountOfDays = getDaysInMonth(year, month);
+  let firstOfMonth = new Date(year, month, 1);
   // make a map of artist name to how often that name occures
   const artistCount = {};
   for (const id of channels) {
-    const playlist = await getPlaylist(id, startdate, enddate);
-    for (const song of playlist) {
-      console.log(song.artist + ": " + id);
-      if (artistCount[song.artist+":"+song.title]) {
-        artistCount[song.artist+":"+song.title]++;
-      } else {
-        artistCount[song.artist+":"+song.title] = 1;
+    // Loop the same amount of times as there are days in selected month
+    for(let i = 1; i<=amountOfDays;i++) {
+      // For every iteration, add one day to the date.
+      firstOfMonth.setDate(firstOfMonth.getDate() + 1);
+      // Get playlist for current date
+      const playlist = await getPlaylist(id, firstOfMonth.toLocaleString().split('T')[0]);
+      // Loop over the current playlist, update the artistCount map
+      for (const song of playlist) {
+        if (artistCount[song.artist+":"+song.title]) {
+          artistCount[song.artist+":"+song.title]++;
+        } else {
+          artistCount[song.artist+":"+song.title] = 1;
+        }
       }
     }
   }
   return artistCount;
 }
 
-export async function getPlaylist(id, startdate, enddate) {
+// Get playlist for one day/date
+export async function getPlaylist(id, date) {
   if (!Number.isInteger(id)) {
     throw new Error(`${id} is not a valid channel id`);
   }
-  console.log("hej!!!: " + id + startdate + enddate);
-  const endpoint = `${BASE_URL}/playlists/getplaylistbychannelid?id=${id}&startdatetime=${startdate}&enddatetime=${enddate}&format=json&size=500`;
+  
+  const endpoint = `${BASE_URL}/playlists/getplaylistbychannelid?id=${id}&startdatetime=${date}&format=json&size=500`;
   const response = await fetchJson(endpoint);
+  
   return response.song;
 }
 
@@ -138,6 +148,11 @@ export function getTopArtists(artistCount, numResults) {
   }
   artistList.sort((o1, o2) => o2.count - o1.count);
   return artistList.slice(0, numResults).map((o) => o.name + "¤" + o.count);
+}
+
+export function getDaysInMonth(year, month) {
+  // Here January is 1 based
+  return new Date(year, month, 0).getDate();
 }
 
 /*

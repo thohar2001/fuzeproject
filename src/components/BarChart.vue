@@ -1,47 +1,61 @@
 <template>
-      <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'">
-      </div>
+  <br />
+  {{ new Date(this.startdate).getMonthName() }}
+  <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div>
 </template>
 
 <script>
 import ApexCharts from "apexcharts";
-//import { getTopFiveArtists } from '../lib/data.js';
+import { getTopFiveArtists } from "../lib/data.js";
 
 export default {
   name: "TestChart",
-  
+
   data() {
     return {
-      uniqueID: "chart" + this.id
-    }
+      uniqueID: "chart" + this.id,
+    };
   },
   props: {
     reversed: {
       type: Boolean,
-      default: true
+      default: true,
     },
     startdate: {
       type: String,
       //default: new Date().toISOString()
     },
-    enddate: {
-      type: String
-    },
     id: {
-      type: String
-    }
+      type: String,
+    },
   },
-  
+  created() {
+    Date.prototype.monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    Date.prototype.getMonthName = function () {
+      return this.monthNames[this.getMonth()];
+    };
+  },
+
   async mounted() {
-    console.log("this.startdate=" + this.startdate)
-    console.log("this.enddate=" + this.enddate)
-    //const toplist = await getTopFiveArtists()
-    //console.log("toplist=" + toplist)
-    //console.log(BASE_URL)
     var options = {
       series: [
         {
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+          // bar values
+          data: [],
         },
       ],
       chart: {
@@ -58,29 +72,45 @@ export default {
         enabled: false,
       },
       xaxis: {
-        categories: [
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-          "Titel Artist",
-        ],
+        categories: [],
       },
       yaxis: {
         reversed: this.reversed,
+        max: 300,
         axisTicks: {
           show: true,
         },
       },
     };
 
-    console.log("Drawing ApexChart (element id=" + this.id + ")")
-    let chart = new ApexCharts(document.querySelector("#"+this.uniqueID), options);
+    let date = new Date(this.startdate);
+    const toplist = await getTopFiveArtists(
+      date.getFullYear(),
+      date.getMonth() + 1
+    );
+
+    let amountOfTimesPlayed;
+    let artist;
+    let song;
+    for (let track of toplist) {
+      artist = track.split(":")[0];
+      song = track.split(":")[1].split("¤")[0];
+      amountOfTimesPlayed = track.split("¤")[1];
+      options.series[0]["data"].push(amountOfTimesPlayed);
+      options.xaxis["categories"].push(artist + ", " + song);
+    }
+    //console.log(BASE_URL)
+
+    let chart = new ApexCharts(
+      document.querySelector("#" + this.uniqueID),
+      options
+    );
     chart.render();
-    
-    
-  }
+
+    this.$forceUpdate();
+  },
 };
+
 </script>
 
 <style>
@@ -91,5 +121,4 @@ export default {
 .regular {
   padding-left: 50%;
 }
-
 </style>

@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p> {{ FooterText}} </p>
+       <router-link to="../About.vue"> {{ FooterText }} </router-link>
     </footer>
 </template>
 
