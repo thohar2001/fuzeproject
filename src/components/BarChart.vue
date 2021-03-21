@@ -5,6 +5,7 @@
 
 <script>
 import ApexCharts from "apexcharts";
+//import { getTopFiveArtists } from '../lib/data.js';
 
 export default {
   name: "TestChart",
@@ -21,7 +22,7 @@ export default {
     },
     startdate: {
       type: String,
-      default: new Date().toISOString()
+      //default: new Date().toISOString()
     },
     enddate: {
       type: String
@@ -31,7 +32,12 @@ export default {
     }
   },
   
-  mounted() {
+  async mounted() {
+    console.log("this.startdate=" + this.startdate)
+    console.log("this.enddate=" + this.enddate)
+    //const toplist = await getTopFiveArtists()
+    //console.log("toplist=" + toplist)
+    //console.log(BASE_URL)
     var options = {
       series: [
         {
@@ -67,10 +73,11 @@ export default {
         },
       },
     };
-  
+
+    console.log("Drawing ApexChart (element id=" + this.id + ")")
     let chart = new ApexCharts(document.querySelector("#"+this.uniqueID), options);
     chart.render();
-    console.log("ApexChart component ID=" + this.id)
+    
     
   }
 };

@@ -1,7 +1,7 @@
 <template>
     <h1>Traffic messages will be displayed here.</h1>
     <div class="nav">
-    <button class="butt" type="button" @click="filterEventClassSerious(1)">Alvarlig</button>
+    <button class="butt" type="button" @click="filterEventClassSerious(1)">Allvarlig</button>
     <button class="butt" type="button" @click="filterEventClassSerious(2)">Medel</button>
     <button class="butt" type="button" @click="filterEventClassSerious(3)">Mindre</button>
     <button class="butt" type="button" @click="filterEventClassSerious(4)">Kommunal</button>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { getTrafficMessages, BASE_URL } from '../lib/data.js'
+import { getTrafficMessages } from '../lib/data.js'
 
 export default {
     name: "Traffic stuff",
@@ -19,14 +19,13 @@ export default {
         return {
             messages: [],
             messagesOriginal: [],
-            URL: BASE_URL,
             userLatitude: "",
             userLongitude: "",
         }
     },
 
     async mounted() {
-        this.messages = await getTrafficMessages(this.URL);
+        this.messages = await getTrafficMessages();
         this.messagesOriginal = this.messages.slice();
     }, methods: {
         
@@ -36,8 +35,6 @@ export default {
         }
         
     }
-
-    
 }
 </script>
 

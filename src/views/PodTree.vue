@@ -1,5 +1,15 @@
 <template>
-  <canvas id="vl" width="800" height="800"></canvas>
+  <input type="text" ref="minTime" size="10" value="40">
+  -
+  <input type="text" ref="maxTime" size="10" value="60">
+  min
+
+  program:
+  <select name="program">
+    <!-- <option v-for="programs">{{ }}</option> -->
+
+  </select> 
+  <canvas id="vl" width="800" size="10" height="800"></canvas>
 </template>
 
 <script>
@@ -26,7 +36,11 @@ export default {
     //   context.fillText("Hello World", 65, 25);
     // }
   },
-
+  data() {
+    return {
+      monthlist: ["January", "Februari", "March", "April", "May", "June", "July", "August", "September", "Oktober", "November", "December"],
+    };
+  },
   mounted() {
     let canvas = document.getElementById("vl");
     let context = canvas.getContext("2d");  

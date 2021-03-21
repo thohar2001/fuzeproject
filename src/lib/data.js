@@ -34,14 +34,14 @@ function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
 
-export async function getTrafficMessages(link) {
+export async function getTrafficMessages() {
 
   // Get geographic coordinates of user
   let position = await getPosition();
   let userLatitude = position.coords.latitude;
   let userLongitude = position.coords.longitude;
 
-  const endpoint = `${link}/traffic/messages?format=json&size=500`;
+  const endpoint = `${BASE_URL}/traffic/messages?format=json&size=500`;
   const response = await fetchJson(endpoint);
   const result = [];
 
@@ -85,8 +85,8 @@ export async function fetchJson(url) {
   return response.json();
 }
 
-export async function getAllChannelIds(link) {
-  const endpoint = `${link}/channels?format=json&size=500`;
+export async function getAllChannelIds() {
+  const endpoint = `${BASE_URL}/channels?format=json&size=500`;
   const response = await fetchJson(endpoint);
   const result = [];
   for (const channel of response.channels) {
@@ -95,17 +95,18 @@ export async function getAllChannelIds(link) {
   return result;
 }
 
-export async function getTopFiveArtists() {
-  const channels = await getAllChannelIds();
-  const artistCount = await countArtistOccurences(channels);
+export async function getTopFiveArtists(startdate, enddate) {
+  const channels = [164];
+  //console.log("getTopFiveArtists channels=" + channels)
+  const artistCount = await countArtistOccurences(channels, startdate, enddate);
   return getTopArtists(artistCount, 5);
 }
 
-export async function countArtistOccurences(channels) {
+export async function countArtistOccurences(channels, startdate, enddate) {
   // make a map of artist name to how often that name occures
   const artistCount = {};
   for (const id of channels) {
-    const playlist = await getPlaylist(id);
+    const playlist = await getPlaylist(id, startdate, enddate);
     for (const song of playlist) {
       console.log(song.artist + ": " + id);
       if (artistCount[song.artist+":"+song.title]) {
@@ -118,12 +119,12 @@ export async function countArtistOccurences(channels) {
   return artistCount;
 }
 
-export async function getPlaylist(id) {
+export async function getPlaylist(id, startdate, enddate) {
   if (!Number.isInteger(id)) {
     throw new Error(`${id} is not a valid channel id`);
   }
-
-  const endpoint = `${BASE_URL}/playlists/getplaylistbychannelid?id=${id}&format=json&size=500`;
+  console.log("hej!!!: " + id + startdate + enddate);
+  const endpoint = `${BASE_URL}/playlists/getplaylistbychannelid?id=${id}&startdatetime=${startdate}&enddatetime=${enddate}&format=json&size=500`;
   const response = await fetchJson(endpoint);
   return response.song;
 }
@@ -139,4 +140,15 @@ export function getTopArtists(artistCount, numResults) {
   return artistList.slice(0, numResults).map((o) => o.name + "¤" + o.count);
 }
 
+/*
+export async function getAllPrograms() {
+  const endpoint = `${BASE_URL}/programs/index?format=json`;
 
+  const response = await fetchJson(endpoint);
+  const result = [];
+  for (const program of response.programs) {
+    result.push(channel.id);
+  }
+  return result;
+}
+*/
