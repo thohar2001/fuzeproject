@@ -4,24 +4,23 @@
     <div id="container">
         
         <div class="programming"> <h2 class="title">Programmering</h2>
-            <h3><img src="..\src\assets\icon-avatar-default.png" alt=""> Mehrdad Badeie</h3> 
-            <h3><img src="..\src\assets\icon-avatar-default.png" alt=""> Tommi Ahonen</h3> 
-            <h3><img src="..\src\assets\icon-avatar-default.png" alt=""> Thomas Haraldsson</h3> 
+            <h3><img src="..\assets\icon-avatar-default.png" alt=""> Mehrdad Badeie</h3> 
+            <h3><img src="..\assets\icon-avatar-default.png" alt=""> Tommi Ahonen</h3> 
+            <h3><img src="..\assets\icon-avatar-default.png" alt=""> Thomas Haraldsson</h3> 
         </div>
 
         <div class="design"><h2 class="title">Design</h2>
-            <h3><img src="..\src\assets\icon-avatar-default.png" alt=""> Elinur Hakbilen</h3> 
-            <h3><img src="..\src\assets\icon-avatar-default.png" alt=""> Filip Alexandrow</h3> 
-            <h3><img src="..\src\assets\icon-avatar-default.png" alt=""> Jonas Johansson</h3> 
-            <h3><img src="..\src\assets\icon-avatar-default.png" alt=""> Rita Anthony</h3> 
+            <h3><img src="..\assets\icon-avatar-default.png" alt=""> Elinur Hakbilen</h3> 
+            <h3><img src="..\assets\icon-avatar-default.png" alt=""> Filip Alexandrow</h3> 
+            <h3><img src="..\assets\icon-avatar-default.png" alt=""> Jonas Johansson</h3> 
+            <h3><img src="..\assets\icon-avatar-default.png" alt=""> Rita Anthony</h3> 
         </div>
 
         <p>Sidan använder SR API <br> &#169; Fuze</p>
-
+    </div>
 </template>
 
 <script>
-
 
 </script>
 
