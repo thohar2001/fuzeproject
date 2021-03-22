@@ -162,4 +162,11 @@ export default {
 .regular {
   padding-left: 50%;
 }
+
+@media screen and (max-width: 800px) {
+  .reversed {
+    padding-left: 50%;
+  }
+}
+
 </style>
