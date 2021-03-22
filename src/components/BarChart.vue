@@ -104,7 +104,7 @@ export default {
     let date = new Date(this.startdate);
     const toplist = await getTopFiveArtists(
       date.getFullYear(),
-      date.getMonth() + 1
+      date.getMonth()
     );
 
     let amountOfTimesPlayed;
@@ -181,7 +181,7 @@ export default {
     justify-content: center;
 }
 .reversed {
-  padding-right: 50%;
+  padding-left: 25%;
 }
 
 .regular {
@@ -190,7 +190,7 @@ export default {
 
 @media screen and (max-width: 800px) {
   .reversed {
-    padding-right: 0%;
+    padding-left: 0%;
   }
   .regular {
     padding-left: 0%;

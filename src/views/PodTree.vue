@@ -4,12 +4,9 @@
   <input type="text" ref="maxTime" size="10" value="60">
   min
 
-  program:
-  <select name="program">
-    <!-- <option v-for="programs">{{ }}</option> -->
+  <PodCircle>
+  </PodCircle>
 
-  </select> 
-  <canvas id="vl" width="800" size="10" height="800"></canvas>
 </template>
 
 <script>
