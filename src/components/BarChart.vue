@@ -165,8 +165,13 @@ export default {
 
 @media screen and (max-width: 800px) {
   .reversed {
-    padding-left: 50%;
+    padding-right: 0%;
+  }
+  .regular {
+    padding-left: 0%;
   }
 }
+
+
 
 </style>
