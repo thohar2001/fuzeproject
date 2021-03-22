@@ -1,5 +1,5 @@
 <template>
-  <h3>Music timeline will be displayed here.</h3>
+  <h1>Most played songs each month</h1>
 
   <label>
     Year:

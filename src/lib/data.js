@@ -139,6 +139,17 @@ export async function getPlaylist(id, date) {
   return response.song;
 }
 
+export async function getProgramCategories() {
+  const endpoint = `${BASE_URL}/programcategories?format=json&pagination=false&size=500`;
+  const response = await fetchJson(endpoint);
+  const result = [];
+
+  for (const program of response.programcategories) {
+    result.push({id: program.id, name: program.name});
+  }
+  return result;
+}
+
 export function getTopArtists(artistCount, numResults) {
   // make map into list of objects, sort them
   // and get the top names
@@ -155,15 +166,25 @@ export function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();
 }
 
-/*
+
 export async function getAllPrograms() {
-  const endpoint = `${BASE_URL}/programs/index?format=json`;
+  const endpoint = `${BASE_URL}/programs/index?format=json&filter=program.haspod&filtervalue=true&pagination=false`;
 
   const response = await fetchJson(endpoint);
   const result = [];
   for (const program of response.programs) {
-    result.push(channel.id);
+    result.push(program);
   }
   return result;
 }
-*/
+
+export async function getAllPods(programid) {
+  const endpoint = `${BASE_URL}/podfiles?programid=${programid}&pagination=false&format=json`;
+  const response = await fetchJson(endpoint);
+
+  const allPods = [];
+  for(const program of response.podfiles) {
+    allPods.push({name: program.name, duration: program.duration})
+  }
+  return allPods;
+}

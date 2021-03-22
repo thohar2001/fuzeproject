@@ -1,5 +1,5 @@
 <template>
-    <h1>Traffic messages will be displayed here.</h1>
+    <h1>Dagens trafikmeddelanden</h1>
     <div class="nav">
     <button class="butt" type="button" @click="filterEventClassSerious(1)">Allvarlig</button>
     <button class="butt" type="button" @click="filterEventClassSerious(2)">Medel</button>

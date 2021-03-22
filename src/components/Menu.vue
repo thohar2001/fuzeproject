@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
-    <router-link to="/">Trafik meddelanden</router-link> |
-    <router-link to="/podtree">Pod Trädet</router-link> |
+    <router-link to="/">Trafikmeddelanden</router-link> |
+    <router-link to="/PodListing">PodListing</router-link> |
     <router-link to="/musictimeline">Musik timeline</router-link>
   </div>
   <br />

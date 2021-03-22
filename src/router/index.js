@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import TrafficMessages from '../views/TrafficMessages.vue'
-import Podtree from '../views/PodTree.vue'
+import PodListing from '../views/PodListing.vue'
 import Musictimeline from '../views/MusicTimeline.vue'
 import About from '../views/About.vue'
 
@@ -16,9 +16,9 @@ const routes = [
     component: TrafficMessages
   },
   {
-    path: '/podtree',
-    name: 'Podtree',
-    component: Podtree
+    path: '/PodListing',
+    name: 'PodListing',
+    component: PodListing,
   },
   {
     path: '/MusicTimeline',
