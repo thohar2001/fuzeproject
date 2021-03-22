@@ -1,6 +1,8 @@
 <template>
   <br />
+  <p id="month">
   {{ new Date(this.startdate).getMonthName() }}
+  </p>
   <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
 
   <div id="app">
@@ -134,7 +136,13 @@ export default {
         },
       },
       dataLabels: {
-        enabled: false,
+        enabled: true,
+        dropShadow: {
+        enabled: true,
+        left: 2,
+        top: 2,
+        opacity: 0.5
+        }
       },
       xaxis: {
         categories: newXaxisCategoriesValues,
@@ -155,6 +163,23 @@ export default {
 </script>
 
 <style>
+
+#month {
+    text-align: center;
+    margin-top: 5em;
+    font-weight: 1000;
+    background-color:rgb(0, 162, 255);
+    border:3px solid rgb(0, 162, 255);   
+    color: white; 
+    height:100px;
+    border-radius:50%;
+    width: 100px;
+    margin-left: 50%;
+
+    display: flex; /* or inline-flex */
+    align-items: center; 
+    justify-content: center;
+}
 .reversed {
   padding-right: 50%;
 }
