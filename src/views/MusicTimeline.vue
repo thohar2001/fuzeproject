@@ -46,7 +46,7 @@
       <bar-chart
         :reversed="false"
         :id="'chart_' + String(i + dateUpdatedCounter * 100)"
-        :key="i"
+        :key="getComponentStartDate(i)"
         :startdate="getComponentStartDate(i)"
       ></bar-chart>
     </template>
@@ -55,7 +55,7 @@
       <bar-chart
         :reversed="true"
         :id="'chart_' + String(i + dateUpdatedCounter * 100)"
-        :key="i"
+        :key="getComponentStartDate(i)"
         :startdate="getComponentStartDate(i)"
       ></bar-chart>
     </template>
@@ -63,8 +63,8 @@
 </template>
 
 <script>
+//import { forceUpdate } from 'vue';
 import BarChart from "../components/BarChart.vue";
-import { getTopFiveArtists } from "../lib/data.js";
 
 export default {
   name: "Home",
@@ -99,6 +99,7 @@ export default {
         1 -
         Number(this.$refs.monthFrom.selectedIndex);
       this.dateUpdatedCounter++;
+      //forceUpdate();
     },
 
     getComponentStartDate(komponentIndex) {
@@ -109,7 +110,7 @@ export default {
   },
   async mounted() {
     this.dateUpdated();
-    console.log(getTopFiveArtists(2021, 1));
+    //console.log(getTopFiveArtists(2021, 1));
   },
 };
 </script>

@@ -11,7 +11,8 @@
     "apexcharts": "^3.26.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.5"
+    "vue-router": "^4.0.5",
+    "vue3-apexcharts": "^1.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

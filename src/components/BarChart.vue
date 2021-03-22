@@ -1,19 +1,66 @@
 <template>
   <br />
   {{ new Date(this.startdate).getMonthName() }}
-  <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div>
+  <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
+
+  <div id="app">
+    <apexchart
+      :ref="uniqueID"
+      width="500"
+      type="bar"
+      :options="chartOptions"
+      :series="series"
+      :class="reversed ? 'reversed' : 'regular'"
+    ></apexchart>
+  </div>
 </template>
 
 <script>
-import ApexCharts from "apexcharts";
+import VueApexCharts from "vue3-apexcharts";
 import { getTopFiveArtists } from "../lib/data.js";
+//import ApexCharts from "apexcharts";
 
 export default {
   name: "TestChart",
-
+  components: {
+    apexchart: VueApexCharts,
+  },
   data() {
     return {
       uniqueID: "chart" + this.id,
+      //ApexCharts model 3.0 start
+
+      series: [
+        {
+          data: [],
+        },
+      ],
+      chartOptions: {
+        chart: {
+          type: "bar",
+          height: 350,
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            horizontal: true,
+          },
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        xaxis: {
+          categories: [],
+        },
+        yaxis: {
+          reversed: this.reversed,
+          axisTicks: {
+            show: true,
+          },
+        },
+      },
+
+      //ApexCharts 3.0 model ends
     };
   },
   props: {
@@ -51,13 +98,31 @@ export default {
   },
 
   async mounted() {
-    var options = {
-      series: [
-        {
-          // bar values
-          data: [],
-        },
-      ],
+
+    let date = new Date(this.startdate);
+    const toplist = await getTopFiveArtists(
+      date.getFullYear(),
+      date.getMonth() + 1
+    );
+
+    let amountOfTimesPlayed;
+    let artist;
+    let song;
+    const newSeriesDataValues = [];
+    const newXaxisCategoriesValues = [];
+    for (let track of toplist) {
+      artist = track.split(":")[0];
+      song = track.split(":")[1].split("¤")[0];
+      amountOfTimesPlayed = track.split("¤")[1];
+
+
+      newSeriesDataValues.push(amountOfTimesPlayed);
+      newXaxisCategoriesValues.push([artist, song]);
+    }
+    // Add play amounts to chart.
+    this.series[0]["data"] = newSeriesDataValues;
+    // Add tracks to chart. P.S. The chart will be refreshed once this object is set.
+    this.chartOptions = {
       chart: {
         type: "bar",
         height: 350,
@@ -72,45 +137,21 @@ export default {
         enabled: false,
       },
       xaxis: {
-        categories: [],
+        categories: newXaxisCategoriesValues,
       },
       yaxis: {
         reversed: this.reversed,
-        max: 300,
         axisTicks: {
           show: true,
         },
       },
     };
 
-    let date = new Date(this.startdate);
-    const toplist = await getTopFiveArtists(
-      date.getFullYear(),
-      date.getMonth() + 1
-    );
+  },
+  methods: {
 
-    let amountOfTimesPlayed;
-    let artist;
-    let song;
-    for (let track of toplist) {
-      artist = track.split(":")[0];
-      song = track.split(":")[1].split("¤")[0];
-      amountOfTimesPlayed = track.split("¤")[1];
-      options.series[0]["data"].push(amountOfTimesPlayed);
-      options.xaxis["categories"].push(artist + ", " + song);
-    }
-    //console.log(BASE_URL)
-
-    let chart = new ApexCharts(
-      document.querySelector("#" + this.uniqueID),
-      options
-    );
-    chart.render();
-
-    this.$forceUpdate();
   },
 };
-
 </script>
 
 <style>
