@@ -74,6 +74,7 @@ export default {
     this.categoryList = await getProgramCategories();
     this.programListAll = await getAllPrograms();
 
+    // When page loads: create change events on dropdownmenus so that their values can be retrieved.
     var event = new Event("change");
     this.$refs.podCategory.dispatchEvent(event);
     this.$refs.podLengthRange.dispatchEvent(event);
@@ -108,13 +109,6 @@ export default {
     },
   },
   watch: {
-
-    categoryList(newCategoryArray) {
-      // A new categorylist has been retrieved. Automatically elect the first category.
-      if (newCategoryArray.length > 0) {
-        this.selectedCategoryId=newCategoryArray[0].id;
-      }
-    },
 
     selectedCategoryId(newCategoryId) {
       console.log("You have selected category: " + this.selectedCategoryId + "(" + newCategoryId + ")");
