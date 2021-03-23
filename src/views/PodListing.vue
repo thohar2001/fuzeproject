@@ -48,15 +48,12 @@ export default {
     this.categoryList = await getProgramCategories()
     this.programList = await getAllPrograms()
     this.programListFilteredByCategory = this.programList.slice()
-    // Get current/initial values from dropdown lists
+
+    // Get initial values for categoryid from dropdown lists on html page
     this.selectedCategoryId = this.$refs.podCategory.value
-    this.selectedProgramId = this.$refs.podProgram.value
 
     console.log("Original selectedCategoryId=" + this.selectedCategoryId)
-    console.log("Original selectedProgramId=" + this.selectedProgramId)
-    //this.getPrograms(this.selectedCategoryId)
-    //console.log("this.programList=" + this.programList)
-    //console.log("hej monika hej på dig monika " + this.categoryList);
+    console.log("Original selectedProgramId=" + this.selectedProgramId + "")
   },
   methods: {
     filterProgramsByCategory(categoryId) {
@@ -73,11 +70,13 @@ export default {
 
       console.log("Filtering categories by " + categoryId + " (result length " + this.programListFilteredByCategory.length + " items)")
     },
+
     categoryDropdownChanged(evt) {
-      this.selectedCategoryId=evt.target.value;
+      this.selectedCategoryId = evt.target.value;
     },
+    
     programDropdownChanged(evt) {
-      this.selectedProgramId=evt.target.value;
+      this.selectedProgramId = evt.target.value;
     }
   },
   watch: {
