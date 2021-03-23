@@ -1,24 +1,23 @@
 <template>
-  
 
+  <label>Välj tid:
   <select ref="podLength">
-    <option value="30">Välj tid:</option>
     <option value="30">30-40</option>
     <option value="40">40-50</option>
     <option value="50">50-60</option>
     <option value="60">60-70</option>
   </select>
-
+ </label>
 
   <label>Välj kategori:  
-  <select ref="podCategory" @change="this.filterProgramsByCategory">
+  <select ref="podCategory" @change="categoryDropdownChanged">
     <option v-for="(category, index) in categoryList" :key="index" :value="category.id">{{category.name}}</option>
   </select>
   </label>
 
   <label>
   Välj program:
-  <select ref="podProgram" @change="false">
+  <select ref="podProgram" @change="programDropdownChanged">
     <option v-for="(program, index) in programListFilteredByCategory" :key="index" :value="program.id">{{program.name}}</option>
   </select>
   </label>
@@ -41,26 +40,56 @@ export default {
       categoryList: [],
       programList: [],
       programListFilteredByCategory: [],
-      selectedCategoryId: 0
-      
+      selectedCategoryId: null,
+      selectedProgramId: null
     };
   },
   async mounted() {
     this.categoryList = await getProgramCategories()
     this.programList = await getAllPrograms()
-    this.programListFilteredByCategory = this.programList
+    this.programListFilteredByCategory = this.programList.slice()
+    // Get current/initial values from dropdown lists
     this.selectedCategoryId = this.$refs.podCategory.value
+    this.selectedProgramId = this.$refs.podProgram.value
+
+    console.log("Original selectedCategoryId=" + this.selectedCategoryId)
+    console.log("Original selectedProgramId=" + this.selectedProgramId)
     //this.getPrograms(this.selectedCategoryId)
     //console.log("this.programList=" + this.programList)
     //console.log("hej monika hej på dig monika " + this.categoryList);
   },
   methods: {
-    filterProgramsByCategory() {
-      this.selectedCategory= this.$refs.podCategory.selectedIndex //.value
-      this.programListFilteredByCategory = this.programList.filter(program => program.categoryId == this.selectedCategory)
-      console.log("Filtering categories by " + this.selectedCategory + "(" + this.programListFilteredByCategory.length + "items)")
+    filterProgramsByCategory(categoryId) {
+      this.programListFilteredByCategory = this.programList.slice()
+      this.programListFilteredByCategory = this.programList.filter(program => { 
+        
+        if (program.programcategory) {
+          return program.programcategory.id == categoryId
+        } else {
+          return false
+        }
+
+      })
+
+      console.log("Filtering categories by " + categoryId + " (result length " + this.programListFilteredByCategory.length + " items)")
+    },
+    categoryDropdownChanged(evt) {
+      this.selectedCategoryId=evt.target.value;
+    },
+    programDropdownChanged(evt) {
+      this.selectedProgramId=evt.target.value;
     }
+  },
+  watch: {
+    selectedCategoryId(newCategoryId) {
+      this.filterProgramsByCategory(newCategoryId)
+    },
+    
+    selectedProgramId(newProgramId) {
+      console.log("You have selected program: " + newProgramId)
+    }    
   }
+
 };
 
 </script>

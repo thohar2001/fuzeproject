@@ -6,6 +6,9 @@ export const BASE_URL = "https://api.sr.se/api/v2";
 export function unixTimeToReadable(date) {
     let millis = String(date).substring(6, 19);
     let readableDate = new Date(Number(millis));
+    // let theHour = readableDate.getHours();
+    // readableDate.setHours(theHour+1);
+    
     return readableDate.toLocaleString();
 }
 
