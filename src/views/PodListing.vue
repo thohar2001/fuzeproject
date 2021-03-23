@@ -47,20 +47,7 @@ export default {
 
   data() {
     return {
-      monthlist: [
-        "January",
-        "Februari",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "Oktober",
-        "November",
-        "December",
-      ],
+
       categoryList: [],
       programListAll: [],
       programListFilteredByCategory: [],
@@ -68,6 +55,7 @@ export default {
       selectedProgramId: null,
       timeIntervalMin: null,
       timeIntervalMax: null,
+      
     };
   },
   async mounted() {
