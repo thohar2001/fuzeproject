@@ -1,11 +1,11 @@
 <template>
   <label
-    >Välj tid:
-    <select ref="podLength">
-      <option value="30">30-40</option>
-      <option value="40">40-50</option>
-      <option value="50">50-60</option>
-      <option value="60">60-70</option>
+    >Välj längd:
+    <select ref="podLengthRange" @Change="lengthRangeDropdownChanged">
+      <option value="30-40">30-40</option>
+      <option value="40-50">40-50</option>
+      <option value="50-60">50-60</option>
+      <option value="60-70">60-70</option>
     </select>
   </label>
 
@@ -74,9 +74,9 @@ export default {
     this.categoryList = await getProgramCategories();
     this.programListAll = await getAllPrograms();
 
-    // TODO: remove this and create a watcher for this array
     var event = new Event("change");
     this.$refs.podCategory.dispatchEvent(event);
+    this.$refs.podLengthRange.dispatchEvent(event);
   },
   methods: {
     filterProgramsByCategory(categoryId) {
@@ -84,12 +84,19 @@ export default {
       this.programListFilteredByCategory = this.programListAll.filter(
         (program) => {
           if (program.programcategory) {
+            // Program contains category: slect program if it's got the category we are looking for.
             return program.programcategory.id == categoryId;
           } else {
+            // Program contains no category at all: discard all those programs.
             return false;
           }
         }
       );
+    },
+
+    lengthRangeDropdownChanged(evt) {
+      this.timeIntervalMin = evt.target.value.split("-")[0]
+      this.timeIntervalMax = evt.target.value.split("-")[1]
     },
 
     categoryDropdownChanged(evt) {
@@ -102,8 +109,11 @@ export default {
   },
   watch: {
 
-    programListAll(newList) {
-      this.programListFilteredByCategory = newList.slice()
+    categoryList(newCategoryArray) {
+      // A new categorylist has been retrieved. Automatically elect the first category.
+      if (newCategoryArray.length > 0) {
+        this.selectedCategoryId=newCategoryArray[0].id;
+      }
     },
 
     selectedCategoryId(newCategoryId) {
