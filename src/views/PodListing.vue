@@ -38,13 +38,13 @@
   <br/>
 
   Podcasts will be displayed here:<br/>
-  <template v-for="(podcast, index) in podcastList" :key="index" :value="podcast.id">
-    <h1>{{podcast.title}} ({{ podcast.lengthInMinutes}} minuter)</h1>
-    {{podcast.description}}<br>
-    <audio controls>
-      <source :src="podcast.url" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+  <template v-for="(podcast, index) in podcastList" :key="index">
+    <h1><a :href="podcast.url">{{podcast.title}}</a></h1>
+    {{ podcast.lengthInMinutes}} minuter
+    <p>
+      {{podcast.description}}<br>
+    </p>
+
   </template>
   <hr>
   <!-- TODO: Add ApexChart here -->
