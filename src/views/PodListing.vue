@@ -1,8 +1,8 @@
 <template>
   <label
     >Välj längd:
-    <select ref="podLengthRange" @Change="lengthRangeDropdownChanged">
-      <option value="30-40">30-40</option>
+    <select v-model="timeIntervalString" ref="podLengthRange">
+      <option value="30-40" selected>30-40</option>
       <option value="40-50">40-50</option>
       <option value="50-60">50-60</option>
       <option value="60-70">60-70</option>
@@ -11,11 +11,12 @@
 
   <label
     >Välj kategori:
-    <select ref="podCategory" @change="categoryDropdownChanged">
+    <select v-model="selectedCategoryId" ref="podCategory">
       <option
         v-for="(category, index) in categoryList"
         :key="index"
         :value="category.id"
+        :selected="index == 0 ? true : false"
       >
         {{ category.name }}
       </option>
@@ -24,7 +25,7 @@
 
   <label>
     Välj program:
-    <select ref="podProgram" @change="programDropdownChanged">
+    <select v-model="selectedProgramId" ref="podProgram" >
       <option
         v-for="(program, index) in programListFilteredByCategory"
         :key="index"
@@ -34,13 +35,15 @@
       </option>
     </select>
   </label>
+  <br/>
 
-  <!-- <p v-for="(podcast, index) in podcastList" :key="index" :value="program.id">{{podcast.name}}</p> -->
+  Podcasts will be displayed here:<br/>
+  <p v-for="(podcast, index) in podcastList" :key="index" :value="podcast.id"><a :href="podcast.url">{{podcast.title}}</a></p>
   <!-- <PodCircle></PodCircle> -->
 </template>
 
 <script>
-import { getAllPrograms, getProgramCategories } from "../lib/data.js";
+import { getAllPrograms, getProgramCategories, getAllPods } from "../lib/data.js";
 
 export default {
   name: "PodListing",
@@ -51,8 +54,10 @@ export default {
       categoryList: [],
       programListAll: [],
       programListFilteredByCategory: [],
+      podcastList: [],
       selectedCategoryId: null,
       selectedProgramId: null,
+      timeIntervalString: null,
       timeIntervalMin: null,
       timeIntervalMax: null,
       
@@ -61,13 +66,13 @@ export default {
   async mounted() {
     this.categoryList = await getProgramCategories();
     this.programListAll = await getAllPrograms();
-
-    // When page loads: create change events on dropdownmenus so that their values can be retrieved.
-    var event = new Event("change");
-    this.$refs.podCategory.dispatchEvent(event);
-    this.$refs.podLengthRange.dispatchEvent(event);
   },
   methods: {
+    async refreshPodcastsList() {
+      if (this.selectedProgramId) {
+        this.podcastList = await getAllPods(this.selectedProgramId, this.timeIntervalMin, this.timeIntervalMax)
+      }
+    },
     filterProgramsByCategory(categoryId) {
 
       this.programListFilteredByCategory = this.programListAll.filter(
@@ -82,37 +87,34 @@ export default {
         }
       );
     },
-
-    lengthRangeDropdownChanged(evt) {
-      this.timeIntervalMin = evt.target.value.split("-")[0]
-      this.timeIntervalMax = evt.target.value.split("-")[1]
-    },
-
-    categoryDropdownChanged(evt) {
-      this.selectedCategoryId = evt.target.value;
-    },
-
-    programDropdownChanged(evt) {
-      this.selectedProgramId = evt.target.value;
-    },
   },
   watch: {
+    async timeIntervalString(newtimeIntervalString) {
+      // Timeinterval dropdown box has changed: get max and min value from its string value.
+      this.timeIntervalMin = newtimeIntervalString.split("-")[0]
+      this.timeIntervalMax = newtimeIntervalString.split("-")[1]
+      this.refreshPodcastsList()
+    },
 
     selectedCategoryId(newCategoryId) {
-      console.log("You have selected category: " + this.selectedCategoryId + "(" + newCategoryId + ")");
+      console.log("You have selected category: " +  newCategoryId + ".");
       this.filterProgramsByCategory(newCategoryId);
     },
 
-    selectedProgramId(newProgramId) {
+    async selectedProgramId(newProgramId) {
       console.log("You have selected program: " + this.selectedProgramId + "(" + newProgramId + ")");
+      // TODO: get new values for podcast array
+      this.refreshPodcastsList()
     },
 
+    /*
     programListFilteredByCategory(newArray) {
       // A new category has been chosen: automatically select the first program in the category
       if (newArray.length > 0) {
         this.selectedProgramId = String(newArray[0].id);
       }
     },
+    */
   },
 };
 </script>

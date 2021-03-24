@@ -181,13 +181,19 @@ export async function getAllPrograms() {
   return result;
 }
 
-export async function getAllPods(programid) {
+export async function getAllPods(programid, durationMin, durationMax) {
   const endpoint = `${BASE_URL}/podfiles?programid=${programid}&pagination=false&format=json`;
   const response = await fetchJson(endpoint);
-
+  console.log("url for podcastlist fetch=" + endpoint)
   const allPods = [];
   for(const program of response.podfiles) {
-    allPods.push({name: program.name, duration: program.duration})
+    if (durationMin != null && durationMax != null) {
+      if (program.duration >= (60*durationMin) && program.duration <= (60*durationMax)) {
+        allPods.push(program)
+      }
+    } else {
+      allPods.push(program)
+    }
   }
   return allPods;
 }
