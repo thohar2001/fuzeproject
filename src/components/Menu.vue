@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <div><img src="..\assets\FUZELOGGA.png" alt="logo">HELLOOO</div> 
+    <div><img src="..\assets\Logga.png" alt="logo">HELLOOO</div> 
     <router-link to="/">Trafikmeddelanden</router-link> |
     <router-link to="/PodListing">PodListing</router-link> |
     <router-link to="/musictimeline">Musik timeline</router-link>
