@@ -17,10 +17,14 @@ export default {
 </script>
 
 <style>
+
+
+h1 {
+  font-size: 3em;
+  color: rgb(255, 255, 255);
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
@@ -31,11 +35,11 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: rgb(255, 255, 255);
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #838383;
 }
 
 footer {

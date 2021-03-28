@@ -1,5 +1,5 @@
 <template>
-  <h1>Most played songs each month</h1>
+  <h1>Most played songs each month in a year (P3)</h1>
 
   <label>
     Year:
