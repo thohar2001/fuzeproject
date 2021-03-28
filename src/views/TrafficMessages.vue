@@ -6,7 +6,7 @@
     <button id="mindre" class="butt" type="button" @click="filterEventClassSerious(3)">Mindre</button>
     <button id="kommunal" class="butt" type="button" @click="filterEventClassSerious(4)">Kommunal</button>
     </div>
-    <p v-for="(message, index) in messages" :key="index">[{{message.exactlocation}}] [{{ Math.round(message.distance)}} km] [{{message.createddate}}] {{message.priority}} {{message.description}}</p>
+    <p v-for="(message, index) in messages" :key="index" :value="message.priority">[{{message.exactlocation}}] [{{ Math.round(message.distance)}} km] [{{message.createddate}}] {{message.priority}} {{message.description}}</p>
 </template>
 
 <script>
@@ -39,17 +39,35 @@ export default {
 </script>
 
 <style scoped>
+    
+
+
     p {
-        color: black;
+        color: rgb(255, 255, 255);
         font-weight: bold;
         font-size: xx-large;
+        border-radius: 2em;
         padding: 1em;
         background-color:rgb(143, 143, 143);
-        font-family: monospace;
+    }
+
+    p[value="1"] {
+        background-color: rgb(250, 60, 76);
+    }
+
+    p[value="2"] {
+        background-color: rgb(255, 195, 0);
+    }
+
+    p[value="3"] {
+        background-color: rgb(68, 190, 199);
+    }
+
+    p[value="4"] {
+        background-color: rgb(0, 0, 0);
     }
 
     .butt {
-        
         width: 130px;
         margin-left: 15px;
         margin-right: 15px;
@@ -63,15 +81,15 @@ export default {
     }
 
     #allvarlig {
-        background-color: rgb(255, 86, 86);
+        background-color: rgb(250, 60, 76);
     }
     
     #medel {
-        background-color: rgb(220, 223, 60);
+        background-color: rgb(255, 195, 0);
     }
 
     #mindre {
-        background-color: rgb(0, 155, 182);
+        background-color: rgb(68, 190, 199);
     }
 
     #kommunal {

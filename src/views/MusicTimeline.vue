@@ -1,5 +1,5 @@
 <template>
-  <h1>Most played songs each month</h1>
+  <h1>Most played songs each month in a year (P3)</h1>
 
   <label>
     Year:
@@ -10,7 +10,7 @@
     </select>
   </label>
 
-  <label>
+  <!-- <label>
     From:
     <select ref="monthFrom" @change="dateUpdated">
       <option
@@ -34,20 +34,19 @@
       >
         {{ m }}
       </option>
-      <!-- Tommi testar: <option v-for="(m, index) in monthlist" :value="m" :key="index+1" :selected="(index == new Date().getMonth()) ? true : false">{{ m }}</option> -->
     </select>
-  </label>
+  </label> -->
 
   <!-- create barcharts for each month: every other barchart faces left and every other barchar faces right. -->
 
-  <template v-for="i in timerangeInMonths">
+  <template v-for="i in monthsInYear">
     <template v-if="i % 2 == 0">
       <!-- create left facing barchart -->
       <bar-chart
         :reversed="false"
         :id="'chart_' + String(i + dateUpdatedCounter * 100)"
-        :key="getComponentStartDate(i)"
-        :startdate="getComponentStartDate(i)"
+        :key="selectedYear + '-' + i"
+        :startdate="selectedYear + '-' + i"
       ></bar-chart>
     </template>
     <template v-else>
@@ -55,15 +54,14 @@
       <bar-chart
         :reversed="true"
         :id="'chart_' + String(i + dateUpdatedCounter * 100)"
-        :key="getComponentStartDate(i)"
-        :startdate="getComponentStartDate(i)"
+        :key="selectedYear + '-' + i + '-01'"
+        :startdate="selectedYear + '-' + i + '-01'"
       ></bar-chart>
     </template>
   </template>
 </template>
 
 <script>
-//import { forceUpdate } from 'vue';
 import BarChart from "../components/BarChart.vue";
 
 export default {
@@ -74,30 +72,32 @@ export default {
   data() {
     return {
       monthlist: [
-        "January",
-        "Februari",
-        "March",
-        "April",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
         "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "Oktober",
-        "November",
-        "December",
-      ],
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Okt",
+        "Nov",
+        "Dec",
+        ],
       yearList: [2018, 2019, 2020, 2021],
-      timerangeInMonths: 0,
+      selectedYear: 2018,
+      monthsInYear: 12,
       dateUpdatedCounter: 0,
     };
   },
   methods: {
     dateUpdated() {
-      this.timerangeInMonths =
-        Number(this.$refs.monthTo.selectedIndex) +
-        1 -
-        Number(this.$refs.monthFrom.selectedIndex);
+      this.selectedYear = this.$refs.year.value;
+      console.log(this.selectedYear);
+      //   Number(this.$refs.monthTo.selectedIndex) +
+      //   1 -
+      //   Number(this.$refs.monthFrom.selectedIndex);
       this.dateUpdatedCounter++;
       //forceUpdate();
     },

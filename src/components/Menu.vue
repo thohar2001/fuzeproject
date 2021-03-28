@@ -1,5 +1,6 @@
 <template>
   <div id="nav">
+    <div><img src="..\assets\FUZELOGGA.png" alt="logo">HELLOOO</div> 
     <router-link to="/">Trafikmeddelanden</router-link> |
     <router-link to="/PodListing">PodListing</router-link> |
     <router-link to="/musictimeline">Musik timeline</router-link>
@@ -10,12 +11,11 @@
 
 <style scoped>
 #nav {
-  border: 2px solid black;
-  padding: 0.5em;
   font-size: xx-large;
-  background-color: grey;
   position: relative;
+  padding: 0px;
   width: 100%;
+  
 }
 </style>
 

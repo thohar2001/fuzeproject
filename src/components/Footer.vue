@@ -18,12 +18,10 @@
 <style scoped>
 
 footer{
-    border: 2px solid black;
     padding: 0.5em;
     font-size: x-large;
-    background-color: grey;
     position: relative;
-    width: 100%;
+    width: 90%;
 }
 
 </style>
