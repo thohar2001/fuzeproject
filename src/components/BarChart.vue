@@ -54,8 +54,8 @@ export default {
         },
         xaxis: {
           categories: [],
-          lines: {
-            show: false,
+          axisBorder: {
+            show: false
           },
         },
         yaxis: {
@@ -66,7 +66,7 @@ export default {
         },
         grid: {
           show: false,
-        }
+        },
       },
 
       //ApexCharts 3.0 model ends
