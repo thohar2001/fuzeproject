@@ -1,9 +1,9 @@
 <template>
   <h1>Most played songs each month in a year (P3)</h1>
 
-  <label>
+  <label >
     Year:
-    <select ref="year" @change="dateUpdated">
+    <select class="dropdown" ref="year" @change="dateUpdated">
       <option v-for="(y, index) in yearList" :value="y" :key="index">
         {{ y }}
       </option>
@@ -47,6 +47,7 @@
         :id="'chart_' + String(i + dateUpdatedCounter * 100)"
         :key="selectedYear + '-' + i"
         :startdate="selectedYear + '-' + i"
+        :barcolor="i"
       ></bar-chart>
     </template>
     <template v-else>
@@ -56,6 +57,7 @@
         :id="'chart_' + String(i + dateUpdatedCounter * 100)"
         :key="selectedYear + '-' + i + '-01'"
         :startdate="selectedYear + '-' + i + '-01'"
+        :barcolor="i"
       ></bar-chart>
     </template>
   </template>
@@ -119,4 +121,9 @@ export default {
 label {
   margin: 1em 1em;
 }
+
+.dropdown {
+  background-color: white;
+}
+
 </style>

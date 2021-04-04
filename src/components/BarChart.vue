@@ -29,6 +29,7 @@ export default {
   },
   data() {
     return {
+      barColors: ['#FA3C4C', '#FFC300', '#44BEC7', '#0084FF'],
       uniqueID: "chart" + this.id,
       //ApexCharts model 3.0 start
 
@@ -53,6 +54,9 @@ export default {
         },
         xaxis: {
           categories: [],
+          lines: {
+            show: false,
+          },
         },
         yaxis: {
           reversed: this.reversed,
@@ -60,6 +64,9 @@ export default {
             show: true,
           },
         },
+        grid: {
+          show: false,
+        }
       },
 
       //ApexCharts 3.0 model ends
@@ -77,6 +84,9 @@ export default {
     id: {
       type: String,
     },
+    barcolor: {
+      type: Number,
+    }
   },
   created() {
     Date.prototype.monthNames = [
@@ -100,6 +110,22 @@ export default {
   },
 
   async mounted() {
+
+    // The chart chooses color depending on the value of the bar chart (barcolor prop)
+    // 4 different colors to choose from 
+    let theColor = []
+    if(this.barcolor % 4 == 0) {
+      theColor.push(this.barColors[0])
+    }
+    else if(this.barcolor % 4 == 1) {
+      theColor.push(this.barColors[1])
+    }
+    else if(this.barcolor % 4 == 2) {
+      theColor.push(this.barColors[2])
+    }
+    else if(this.barcolor % 4 == 3) {
+      theColor.push(this.barColors[3])
+    }
 
     let date = new Date(this.startdate);
     const toplist = await getTopFiveArtists(
@@ -144,6 +170,21 @@ export default {
         opacity: 0.5
         }
       },
+        fill: {
+          colors: theColor,
+          type: 'gradient',
+          gradient: {
+          shade: 'dark',
+          type: "horizontal",
+          shadeIntensity: 0.5,
+          gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 50, 100],
+          colorStops: []
+          }
+        },
       xaxis: {
         categories: newXaxisCategoriesValues,
       },
@@ -153,8 +194,10 @@ export default {
           show: true,
         },
       },
+      // theme: {
+      //   palette: ['palette1', 'palette2', 'palette3']
+      // },
     };
-
   },
   methods: {
 
