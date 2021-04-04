@@ -105,8 +105,6 @@ p {
 
 .lineyellow {
     background: -webkit-gradient(radial, 0% 50%, 0, 0% 50%, 200, from(rgb(255, 195, 0)), to(#25283C));
-    
-    
 }
 
 .lineblue {

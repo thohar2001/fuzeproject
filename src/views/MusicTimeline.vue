@@ -2,9 +2,8 @@
   <h1>Most played songs each month in a year (P3)</h1>
 
   <label >
-    Year:
     <select class="dropdown" ref="year" @change="dateUpdated">
-      <option v-for="(y, index) in yearList" :value="y" :key="index">
+      <option class="option" v-for="(y, index) in yearList" :value="y" :key="index">
         {{ y }}
       </option>
     </select>
@@ -40,7 +39,7 @@
   <!-- create barcharts for each month: every other barchart faces left and every other barchar faces right. -->
 
   <template v-for="i in monthsInYear">
-    <template v-if="i % 2 == 0">
+    <template v-if="i % 2">
       <!-- create left facing barchart -->
       <bar-chart
         :reversed="false"
@@ -123,7 +122,19 @@ label {
 }
 
 .dropdown {
-  background-color: white;
+  width: 10em;
+  height: 3em;
+  color: white;
+  font-size: large;
+  background-color: #25283C;
+  border-radius: 1em;
+}
+
+.option {
+  /* width: 10em;
+  height: 10em; */
+  color: white;
+  background-color: #25283C;
 }
 
 </style>

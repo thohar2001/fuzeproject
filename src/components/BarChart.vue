@@ -42,6 +42,7 @@ export default {
         chart: {
           type: "bar",
           height: 350,
+          foreColor: '#FFFFFF'
         },
         plotOptions: {
           bar: {
@@ -50,7 +51,7 @@ export default {
           },
         },
         dataLabels: {
-          enabled: false,
+          enabled: true,
         },
         xaxis: {
           categories: [],

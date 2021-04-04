@@ -39,12 +39,13 @@
 
   Podcasts will be displayed here:<br/>
   <template v-for="(podcast, index) in podcastList" :key="index">
+    <div class="card">
     <h1><a :href="podcast.url">{{podcast.title}}</a></h1>
     {{ podcast.lengthInMinutes}} minuter
     <p>
       {{podcast.description}}<br>
     </p>
-
+    </div>
   </template>
   <hr>
   <!-- TODO: Add ApexChart here -->
@@ -136,6 +137,25 @@ export default {
 </script>
 
 <style>
+a {
+  color: #ffffff;
+}
+h2 {
+  margin-top: 0;
+}
+
+.card {
+  padding: 40px;
+  background: #25283C;
+  max-width: 360px;
+  border-radius: 20px;
+  margin: 60px auto;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
+}
+
+option, select {
+  color: white;
+}
 canvas {
   background-color: rgb(255, 255, 255);
   border: 1px solid black;

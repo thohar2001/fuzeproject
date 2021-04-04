@@ -54,10 +54,12 @@ export default {
     p {
         color: rgb(255, 255, 255);
         font-weight: bold;
-        font-size: xx-large;
+        font-size: large;
         border-radius: 2em;
         padding: 1em;
         background-color:rgb(143, 143, 143);
+        margin-left: 15em;
+        margin-right: 15em;
     }
 
     p[value="1"] {
