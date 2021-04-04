@@ -19,6 +19,7 @@ export default {
         return {
             messages: [],
             messagesOriginal: [],
+            currentPriority: 0,
             userLatitude: "",
             userLongitude: "",
         }
@@ -29,9 +30,17 @@ export default {
         this.messagesOriginal = this.messages.slice();
     }, methods: {
         
-        filterEventClassSerious(priorityNumber) {
-            this.messages = this.messagesOriginal.slice()
-            this.messages = this.messages.filter(message => message.priority == priorityNumber)
+        async filterEventClassSerious(priorityNumber) {
+            if(priorityNumber == this.currentPriority) {
+                this.messages = await getTrafficMessages()
+                this.currentPriority = 0
+            }
+            else {
+                this.messages = this.messagesOriginal.slice()
+                this.messages = this.messages.filter(message => message.priority == priorityNumber)
+                this.currentPriority = priorityNumber
+            }
+
         }
         
     }
