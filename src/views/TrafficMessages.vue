@@ -1,4 +1,7 @@
 <template>
+
+
+
     <h1>Dagens trafikmeddelanden</h1>
     <div class="navtrafik">
     <button id="allvarlig" class="butt" type="button" @click="filterEventClassSerious(1)">Allvarlig</button>
@@ -6,7 +9,23 @@
     <button id="mindre" class="butt" type="button" @click="filterEventClassSerious(3)">Mindre</button>
     <button id="kommunal" class="butt" type="button" @click="filterEventClassSerious(4)">Kommunal</button>
     </div>
-    <p v-for="(message, index) in messages" :key="index" :value="message.priority">[{{message.exactlocation}}] [{{ Math.round(message.distance)}} km] [{{message.createddate}}] {{message.priority}} {{message.description}}</p>
+    
+        <div v-for="(message, index) in messages" :key="index" :value="message.priority" class="accordion accordion-flush" id="accordionFlushTrafficMessages">
+            <div class="accordion-item">
+                <h2 class="accordion-header" :id="'flush-heading' + index">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="'#flush-collapse' +index" aria-expanded="false" :aria-controls="'flush-collapse' + index">
+                        [{{message.exactlocation}}] [{{ Math.round(message.distance)}} km] 
+                    </button>
+                    
+                </h2>
+                <div :id="'flush-collapse' + index" class="accordion-collapse collapse" :aria-labelledby="'flush-heading' + index" data-bs-parent="#accordionFlushTrafficMessages">
+                    <div class="accordion-body">
+                        [{{message.createddate}}] {{message.priority}} {{message.description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </template>
 
 <script>
