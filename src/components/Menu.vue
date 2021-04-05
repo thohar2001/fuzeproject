@@ -1,8 +1,9 @@
 <template>
   <div id="nav">
-    <router-link to="/">Trafikmeddelanden</router-link> |
-    <router-link to="/PodListing">PodListing</router-link> |
-    <router-link to="/musictimeline">Musik timeline</router-link>
+    <div><img src="..\assets\Logga.png" alt="logo" id="logo"></div>
+    <router-link to="/">Trafik</router-link> |
+    <router-link to="/PodListing">Podcirkeln</router-link> |
+    <router-link to="/musictimeline">Populära låtar genom åren</router-link>
   </div>
   <br />
   <router-view />
@@ -10,12 +11,18 @@
 
 <style scoped>
 #nav {
-  border: 2px solid black;
-  padding: 0.5em;
   font-size: xx-large;
-  background-color: grey;
   position: relative;
+  padding: 0px;
   width: 100%;
+}
+
+#logo {
+  width: 3%;
+  height: auto;
+  position: absolute;
+  left: 20px;
+  align-self: auto;
 }
 </style>
 
