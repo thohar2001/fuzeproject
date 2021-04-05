@@ -1,6 +1,6 @@
 <template>
     <h1>Dagens trafikmeddelanden</h1>
-    <div class="nav">
+    <div class="navtrafik">
     <button id="allvarlig" class="butt" type="button" @click="filterEventClassSerious(1)">Allvarlig</button>
     <button id="medel" class="butt" type="button" @click="filterEventClassSerious(2)">Medel</button>
     <button id="mindre" class="butt" type="button" @click="filterEventClassSerious(3)">Mindre</button>
@@ -49,7 +49,9 @@ export default {
 
 <style scoped>
     
-
+    .navtrafik {
+        padding: 2%;
+    }
 
     p {
         color: rgb(255, 255, 255);
