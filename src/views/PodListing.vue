@@ -2,6 +2,8 @@
   <label
     >Välj längd:
     <select v-model="timeIntervalString" ref="podLengthRange">
+      <option value='0-10'>0-10 min</option>
+      <option value='10-20'>30-40 min</option>
       <option value='30-40'>30-40 min</option>
       <option value='40-50'>40-50 min</option>
       <option value='50-60'>50-60 min</option>
