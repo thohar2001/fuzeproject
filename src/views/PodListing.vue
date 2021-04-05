@@ -156,7 +156,7 @@ h2 {
   display: inline-grid;
   padding: 40px;
   max-width: 360px;
-  margin: 60px;
+  margin: 10px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
 }
 
