@@ -41,9 +41,9 @@
 
   Podcasts will be displayed here:<br/>
   <template v-for="(podcast, index) in podcastList" :key="index">
-    <div class="card">
-    <h1><a :href="podcast.url">{{podcast.title}}</a></h1>
-    {{ podcast.lengthInMinutes}} minuter
+    <div class="carden">
+    <h1><a class="link" :href="podcast.url">{{podcast.title}}</a></h1>
+    <div>{{ podcast.lengthInMinutes}} minuter</div>
     <p>
       {{podcast.description}}<br>
     </p>
@@ -142,16 +142,21 @@ export default {
 a {
   color: #ffffff;
 }
+
 h2 {
   margin-top: 0;
 }
 
-.card {
+.link {
+  color: #ffffff;
+  font-size: xx-large;
+}
+
+.carden {
+  display: inline-grid;
   padding: 40px;
-  background: #25283C;
   max-width: 360px;
-  border-radius: 20px;
-  margin: 60px auto;
+  margin: 60px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
 }
 
