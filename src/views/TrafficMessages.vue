@@ -10,21 +10,26 @@
     <button id="kommunal" class="butt" type="button" @click="filterEventClassSerious(4)">Kommunal</button>
     </div>
     
-        <div v-for="(message, index) in messages" :key="index" :value="message.priority" class="accordion accordion-flush" id="accordionFlushTrafficMessages">
-            <div class="accordion-item">
-                <h2 class="accordion-header" :id="'flush-heading' + index">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="'#flush-collapse' +index" aria-expanded="false" :aria-controls="'flush-collapse' + index">
-                        [{{message.exactlocation}}] [{{ Math.round(message.distance)}} km] 
-                    </button>
+    <div v-for="(message, index) in messages" :key="index" :value="message.priority" class="accordion accordion-flush" id="accordionFlushTrafficMessages">
+        <div class="accordion-item">
+            
+            <h2 class="accordion-header" :id="'flush-heading' + index">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="'#flush-collapse' +index" aria-expanded="false" :aria-controls="'flush-collapse' + index">
+                    <!-- Accordion heading begins -->
+                    [{{message.exactlocation}}] [{{ Math.round(message.distance)}} km] 
+                    <!-- Accordion heading ends -->
+                </button>
                     
-                </h2>
-                <div :id="'flush-collapse' + index" class="accordion-collapse collapse" :aria-labelledby="'flush-heading' + index" data-bs-parent="#accordionFlushTrafficMessages">
-                    <div class="accordion-body">
-                        [{{message.createddate}}] {{message.priority}} {{message.description}}
-                    </div>
+            </h2>
+            <div :id="'flush-collapse' + index" class="accordion-collapse collapse" :aria-labelledby="'flush-heading' + index" data-bs-parent="#accordionFlushTrafficMessages">
+                <div class="accordion-body">
+                    <!-- Accordion body begins -->
+                    [{{message.createddate}}] {{message.priority}} {{message.description}}
+                    <!-- Accordion body ends -->
                 </div>
             </div>
         </div>
+    </div>
 
 </template>
 
