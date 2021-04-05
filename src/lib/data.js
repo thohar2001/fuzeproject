@@ -62,10 +62,10 @@ export async function getTrafficMessages() {
       }
 
       // Now convert the date again, so it only shows hours, minutes and seconds (hh:mm)
-      message.createddate = message.createddate.substring(11, 20);
+      message.createddate = message.createddate.substring(11, 16);
     
     // Show exact location if the message contains an exact location
-    if (message.exactlocation.length < 0) {
+    if (message.exactlocation.length > 0) {
       result.push(message);
 
     }
