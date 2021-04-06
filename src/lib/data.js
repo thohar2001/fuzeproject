@@ -77,6 +77,11 @@ export async function getTrafficMessages() {
     // Add distance to accident
     result[result.length-1]["distance"] = getDistanceFromLatLonInKm(userLatitude, userLongitude, message.latitude, message.longitude)
   }
+
+  // Sort traffic messages by distance
+  result.sort(function (a, b) {
+    return a.distance - b.distance;
+  })
   return result;
 }
 
