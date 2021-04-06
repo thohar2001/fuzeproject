@@ -1,13 +1,17 @@
 <template>
+
+  <h2>Skräddarsy ditt podcast-schema:</h2><br/>
   <label
     >Välj längd:
     <select v-model="timeIntervalString" ref="podLengthRange">
       <option value='0-10'>0-10 min</option>
       <option value='10-20'>10-20 min</option>
+      <option value='20-30'>20-30 min</option>
       <option value='30-40'>30-40 min</option>
       <option value='40-50'>40-50 min</option>
       <option value='50-60'>50-60 min</option>
-      <option value='60-70'>60-70 min</option>
+      <option value='60-80'>60-80 min</option>
+      <option value='80-100'>80-100 min</option>
     </select>
   </label>
 
@@ -39,14 +43,11 @@
   </label>
   <br/>
 
-  Podcasts will be displayed here:<br/>
+  
   <template v-for="(podcast, index) in podcastList" :key="index">
     <div class="carden">
     <h1><a class="link" :href="podcast.url">{{podcast.title}}</a></h1>
-    <div>{{ podcast.lengthInMinutes}} minuter</div>
-    <p>
-      {{podcast.description}}<br>
-    </p>
+    <div class="timeinmin">{{ podcast.lengthInMinutes}} min</div>
     </div>
   </template>
   <hr>
@@ -61,7 +62,6 @@ export default {
 
   data() {
     return {
-      vueCanvas: null,
       categoryList: [],
       programListAll: [],
       programListFilteredByCategory: [],
@@ -142,6 +142,10 @@ export default {
 a, a:hover, a:visited, a:link, a:active {
   color: #ffffff;
   text-decoration: none;
+}
+
+.timeinmin {
+  color: #FA3C4C;
 }
 
 h2 {

@@ -21,12 +21,10 @@ export default {
 
 h1 {
   font-size: 3em;
-  color: rgb(255, 255, 255);
 }
 
 #app {
   text-align: center;
-
 }
 
 #nav {

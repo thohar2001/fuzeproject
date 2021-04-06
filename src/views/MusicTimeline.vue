@@ -1,5 +1,5 @@
 <template>
-  <h1>Most played songs each month in a year (P3)</h1>
+  <h2>Topplåtar (P3)</h2>
 
   <label >
     <select class="dropdown" ref="year" @change="dateUpdated">
@@ -117,6 +117,10 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  color: white;
+}
+
 label {
   margin: 1em 1em;
 }
