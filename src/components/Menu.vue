@@ -8,11 +8,11 @@
     </div>
     <router-link id="aboutLink" to="/About">Om FUZE</router-link>
   </div>
-  <br />
-  <br>
   <br>
   <router-view />
-
+  <br>
+  <br>
+  <br>
   <div id="bottomNav">
       <router-link id="startLink" to="/Start" class="trafik"><img src="..\assets\Logga.png" alt="logo" id="logo"></router-link>
       <router-link to="/" class="trafik">Trafik</router-link> 
