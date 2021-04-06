@@ -61,6 +61,7 @@ export default {
 
   data() {
     return {
+      vueCanvas: null,
       categoryList: [],
       programListAll: [],
       programListFilteredByCategory: [],
@@ -98,7 +99,8 @@ export default {
           }
         }
       );
-    },
+    }
+  },
   watch: {
 
     categoryList(newCategoryList) {
@@ -133,7 +135,7 @@ export default {
     },
     
   },
-}
+};
 </script>
 
 <style>
