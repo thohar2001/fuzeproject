@@ -163,7 +163,7 @@ h2 {
 
 h1 a.link {
   font-size: x-large;
-  color: #FA3C4C;
+  color: #ffffff;
 }
 
 .playbutton {
