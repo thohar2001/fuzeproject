@@ -12,9 +12,9 @@
 <style scoped>
 
 #nav {
-  font-size: xx-large;
+  font-size: large;
   position: relative;
-  padding: 0px;
+  padding: 10px;
   width: 100%;
 }
 
@@ -27,13 +27,13 @@
 }
 
 #nav {
-  color: #25283C;
+  width: 100%;
   background-color: white;
 }
 
 .trafik, .podcirkel, .populära {
-
   background-color: white;
+  margin: 1.5%;
 }
 
 </style>
