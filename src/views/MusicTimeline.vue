@@ -1,5 +1,9 @@
 <template>
-  <h1>Most played songs each month in a year (P3)</h1>
+  <h1>Topplåtar</h1>
+
+  <p>Välj årtal nedan för att se de<br>
+     de mest spelade låtarna:
+  </p>
 
   <label >
     <select class="dropdown" ref="year" @change="dateUpdated">
