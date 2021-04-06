@@ -8,7 +8,7 @@
   <div id="app">
     <apexchart
       :ref="uniqueID"
-      width="500"
+      width="100%"
       type="bar"
       :options="chartOptions"
       :series="series"
@@ -231,7 +231,7 @@ export default {
     justify-content: center;
 }
 .reversed {
-  padding-left: 25%;
+  padding-right: 50%;
 }
 
 .regular {
@@ -240,7 +240,7 @@ export default {
 
 @media screen and (max-width: 800px) {
   .reversed {
-    padding-left: 0%;
+    padding-right: 0%;
   }
   .regular {
     padding-left: 0%;
