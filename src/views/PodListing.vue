@@ -1,6 +1,6 @@
 <template>
 
-  <h2>Skräddarsy ditt podcast-schema:</h2><br/>
+  <p>Skräddarsy ditt podcast-schema:<br/></p>
   <label
     >Välj längd:
     <select v-model="timeIntervalString" ref="podLengthRange">
@@ -144,6 +144,10 @@ a, a:hover, a:visited, a:link, a:active {
   text-decoration: none;
 }
 
+p, label {
+  color: #ffffff;
+}
+
 .timeinmin {
   color: #FA3C4C;
 }
@@ -152,9 +156,9 @@ h2 {
   margin-top: 0;
 }
 
-.link {
-  color: #ffffff;
-  font-size: xx-large;
+h1 a.link {
+  font-size: x-large;
+  color: red;
 }
 
 .carden {
@@ -181,4 +185,7 @@ canvas {
     height: 800px;
   }
 }
+
+
+
 </style>
