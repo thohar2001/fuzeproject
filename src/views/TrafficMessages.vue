@@ -1,8 +1,4 @@
 <template>
-
-
-
-    <h2>Dagens trafikmeddelanden</h2>
     <div class="navtrafik">
     <button id="allvarlig" class="butt" type="button" @click="filterEventClassSerious(1)" value="1">Allvarlig</button>
     <button id="medel" class="butt" type="button" @click="filterEventClassSerious(2)" value="2">Medel</button>
@@ -10,7 +6,6 @@
     <button id="kommunal" class="butt" type="button" @click="filterEventClassSerious(4)" value="4">Kommunal</button>
     </div>
     
-
     <div class="accordion" id="accordionFlushTrafficMessages">
         <div v-for="(message, index) in messages" :key="index" :value="message.priority" class="accordion-item">
             

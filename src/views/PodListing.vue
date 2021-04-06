@@ -1,6 +1,6 @@
 <template>
 
-  <h2>Skräddarsy ditt podcast-schema:</h2><br/>
+  <p>Skräddarsy ditt podcast-schema:<br/></p>
   <label
     >Välj längd:
     <select v-model="timeIntervalString" ref="podLengthRange">
@@ -146,6 +146,10 @@ export default {
 a, a:hover, a:visited, a:link, a:active {
   color: #ffffff;
   text-decoration: none;
+}
+
+p, label {
+  color: #ffffff;
 }
 
 .timeinmin {

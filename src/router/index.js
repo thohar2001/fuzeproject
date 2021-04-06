@@ -1,10 +1,17 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import StartPage from '../views/StartPage.vue'
 import TrafficMessages from '../views/TrafficMessages.vue'
 import PodListing from '../views/PodListing.vue'
 import Musictimeline from '../views/MusicTimeline.vue'
 import About from '../views/About.vue'
 
+
 const routes = [
+  {
+    path: '/Start',
+    name: 'Start',
+    component: StartPage,
+  },
   {
     path: '/About',
     name: 'About',
