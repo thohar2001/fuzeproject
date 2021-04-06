@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <div><img src="..\assets\Logga.png" alt="logo" id="logo"></div>
+    <router-link to="/Start" class="trafik"><img src="..\assets\Logga.png" alt="logo" id="logo"></router-link> 
     <router-link to="/" class="trafik">Trafik</router-link> 
     <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> 
     <router-link to="/musictimeline" class="populära">Topplåtar</router-link>

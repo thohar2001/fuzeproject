@@ -8,7 +8,7 @@ import About from '../views/About.vue'
 
 const routes = [
   {
-    path: '/start',
+    path: '/Start',
     name: 'Start',
     component: StartPage,
   },

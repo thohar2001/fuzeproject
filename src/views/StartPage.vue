@@ -1,7 +1,8 @@
 <template>
 
+    <div>
     <p>Shining Text Animation Effects</p>
-    
+    </div>
 </template>
 
 <script>
@@ -12,9 +13,7 @@
 
 <style scoped>
 
-body {
-  margin: 0;
-  padding: 0;
+div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +31,7 @@ p {
   background: linear-gradient(90deg, #000, #fff, #000);
   background-repeat: no-repeat;
   background-size: 80%;
-  animation: animate 3s linear infinite;
+  animation: animate 3s;
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
