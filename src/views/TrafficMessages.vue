@@ -190,4 +190,10 @@ export default {
         border: solid white 2px;
     }
 
+    button.butt:disabled {
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+    }
+
 </style>
