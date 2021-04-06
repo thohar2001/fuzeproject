@@ -187,7 +187,7 @@ export async function getAllPods(programid, durationMin, durationMax) {
   //console.log("url for podcastlist fetch=" + endpoint)
   const allPods = [];
   for(const podcast of response.podfiles) {
-    podcast.lengthInMinutes = (podcast.duration/60).toFixed(2);
+    podcast.lengthInMinutes = Math.floor((podcast.duration/60).toFixed(2));
     if (durationMin != null && durationMax != null) {
       if (podcast.duration >= (60*durationMin) && podcast.duration <= (60*durationMax)) {
         allPods.push(podcast)
