@@ -4,7 +4,7 @@
     <router-link to="/" class="trafik">Trafik</router-link> 
     <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> 
     <router-link to="/musictimeline" class="populära">Topplåtar</router-link>
-    <router-link to="/About" class="omfuze">OM fuze</router-link>
+    <router-link to="/About" class="omfuze">Om FUZE</router-link>
   </div>
   <br />
   <router-view />
@@ -25,6 +25,8 @@
   position: absolute;
   left: 20px;
   align-self: auto;
+  background-color: white;
+  
 }
 
 #nav {
@@ -32,10 +34,16 @@
   background-color: white;
 }
 
-.trafik, .podcirkel, .populära, .omfuze {
+.omfuze {
+  float: right;
+  color: #7E163B;
   background-color: white;
-  margin: 1.5%;
+}
 
+.trafik, .podcirkel, .populära {
+  background-color: white;
+  color: #25283C;;
+  margin: 1.5%;
 }
 
 
