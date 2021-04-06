@@ -61,7 +61,6 @@ export default {
 
   data() {
     return {
-
       categoryList: [],
       programListAll: [],
       programListFilteredByCategory: [],
@@ -100,11 +99,6 @@ export default {
         }
       );
     },
-
-    drawCircle() {
-      
-    }
-  },
   watch: {
 
     categoryList(newCategoryList) {
@@ -139,7 +133,7 @@ export default {
     },
     
   },
-};
+}
 </script>
 
 <style>
