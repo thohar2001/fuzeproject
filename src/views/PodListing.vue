@@ -43,7 +43,7 @@
   </label>
   <br/>
 
-  
+  <br>
   <template v-for="(podcast, index) in podcastList" :key="index">
     <div class="carden">
         <h1><a class="link" :href="podcast.url">{{podcast.title}}</a></h1>
@@ -173,6 +173,8 @@ h1 a.link {
 .carden {
   display: inline-grid;
   padding: 40px;
+  height: 23em;
+  width: 30em;
   max-width: 360px;
   margin: 10px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
