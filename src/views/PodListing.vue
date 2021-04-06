@@ -43,10 +43,7 @@
   <template v-for="(podcast, index) in podcastList" :key="index">
     <div class="carden">
     <h1><a class="link" :href="podcast.url">{{podcast.title}}</a></h1>
-    <div>{{ podcast.lengthInMinutes}} minuter</div>
-    <p>
-      {{podcast.description}}<br>
-    </p>
+    <div class="timeinmin">{{ podcast.lengthInMinutes}} min</div>
     </div>
   </template>
   <hr>
@@ -142,6 +139,10 @@ export default {
 a, a:hover, a:visited, a:link, a:active {
   color: #ffffff;
   text-decoration: none;
+}
+
+.timeinmin {
+  color: #FA3C4C;
 }
 
 h2 {
