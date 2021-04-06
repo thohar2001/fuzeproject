@@ -17,8 +17,18 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
   background-color: #000;
+
+  position:fixed;
+  padding:0;
+  margin:0;
+
+  top: 0;
+  left:0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 
 p {
@@ -30,7 +40,7 @@ p {
   overflow: hidden;
   background: linear-gradient(90deg, #000, #fff, #000);
   background-repeat: no-repeat;
-  background-size: 80%;
+  background-size: 100%;
   animation: animate 3s;
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
