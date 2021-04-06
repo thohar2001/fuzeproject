@@ -33,7 +33,7 @@ h1 {
 
 #nav a {
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: #25283C;;
 }
 
 #nav a.router-link-exact-active {

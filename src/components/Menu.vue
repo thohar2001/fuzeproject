@@ -1,8 +1,8 @@
 <template>
   <div id="nav">
     <div><img src="..\assets\Logga.png" alt="logo" id="logo"></div>
-    <router-link to="/" class="trafik">Trafik</router-link> |
-    <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> |
+    <router-link to="/" class="trafik">Trafik</router-link> 
+    <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> 
     <router-link to="/musictimeline" class="populära">Topplåtar</router-link>
   </div>
   <br />
@@ -10,10 +10,6 @@
 </template>
 
 <style scoped>
-
-body {
-  color: white;
-}
 
 #nav {
   font-size: xx-large;
@@ -30,7 +26,13 @@ body {
   align-self: auto;
 }
 
-.nav {
+#nav {
+  color: #25283C;
+  background-color: white;
+}
+
+.trafik, .podcirkel, .populära {
+
   background-color: white;
 }
 
