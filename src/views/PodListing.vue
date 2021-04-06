@@ -142,7 +142,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 a, a:hover, a:visited, a:link, a:active {
   color: #ffffff;
   text-decoration: none;
