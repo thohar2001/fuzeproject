@@ -100,6 +100,10 @@ export default {
         }
       );
     },
+
+    drawCircle() {
+      
+    }
   },
   watch: {
 
