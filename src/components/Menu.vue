@@ -21,7 +21,7 @@
 }
 
 #logo {
-  width: 3%;
+  width: 3em;
   height: auto;
   position: absolute;
   left: 20px;
@@ -44,7 +44,7 @@
 .trafik, .podcirkel, .populära {
   background-color: white;
   color: #25283C;;
-  margin: 1.5%;
+  margin: 2em;
 }
 
 

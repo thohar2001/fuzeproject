@@ -1,6 +1,6 @@
 <template>
   <br />
-  <p id="month">
+  <p id="month" :style="'color: ' + colorMonth">
   {{ new Date(this.startdate).getMonthName() }}
   </p>
   <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
@@ -31,6 +31,7 @@ export default {
     return {
       barColors: ['#FA3C4C', '#FFC300', '#44BEC7', '#0084FF'],
       uniqueID: "chart" + this.id,
+      colorMonth: null,
       //ApexCharts model 3.0 start
 
       series: [
@@ -118,6 +119,12 @@ export default {
     // The chart chooses color depending on the value of the bar chart (barcolor prop)
     // 4 different colors to choose from 
     let theColor = []
+    
+    // set a color for this month
+    this.colorMonth = this.barColors[this.barcolor % 4]
+    theColor.push(this.barColors[this.barcolor % 4])  
+    
+    /*
     if(this.barcolor % 4 == 0) {
       theColor.push(this.barColors[0])
     }
@@ -130,6 +137,9 @@ export default {
     else if(this.barcolor % 4 == 3) {
       theColor.push(this.barColors[3])
     }
+    */
+
+    
 
     let date = new Date(this.startdate);
     const toplist = await getTopFiveArtists(
@@ -206,9 +216,6 @@ export default {
       // },
     };
   },
-  methods: {
-
-  },
 };
 </script>
 
@@ -216,13 +223,10 @@ export default {
 
 #month {
     text-align: center;
-    margin-top: 5em;
     font-weight: 1000;
-    background-color:rgb(0, 162, 255);
-    border:3px solid rgb(0, 162, 255);   
-    color: white; 
-    height:100px;
-    border-radius:50%;
+    font-size: 2em;
+    margin-top: 1em;
+    color: barColor;
     width: 100px;
     margin-left: 50%;
 
