@@ -8,11 +8,11 @@
     </div>
     <router-link id="aboutLink" to="/About">Om FUZE</router-link>
   </div>
-  <br />
-  <br>
   <br>
   <router-view />
-
+  <br>
+  <br>
+  <br>
   <div id="bottomNav">
       <router-link to="/" class="trafik">Trafik</router-link> 
       <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> 
