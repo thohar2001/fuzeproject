@@ -1,7 +1,7 @@
 <template>
 
     <div>
-    <p>Shining Text Animation Effects</p>
+    <p>FUZE</p>
     </div>
 </template>
 
@@ -17,9 +17,6 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background-color: #000;
-
   position:fixed;
   padding:0;
   margin:0;
@@ -34,25 +31,14 @@ div {
 p {
   position: relative;
   font-family: sans-serif;
+  font-weight: bold;
   text-transform: uppercase;
-  font-size: 2em;
-  letter-spacing: 4px;
+  font-size: 15em;
   overflow: hidden;
-  background: linear-gradient(90deg, #000, #fff, #000);
+  background: white;
   background-repeat: no-repeat;
   background-size: 100%;
-  animation: animate 3s;
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
-
-@keyframes animate {
-  0% {
-    background-position: -500%;
-  }
-  100% {
-    background-position: 500%;
-  }
-}
-
 </style>
