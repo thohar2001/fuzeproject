@@ -1,20 +1,20 @@
 <template>
 <h1 class="firsttitle">Om FUZE</h1>
 <p class="infotext">Version 2.2.0 <br>Denna sidan använder Sveriges Radios öpnna API</p>
-<div class="linered"></div>
+<div class="linered"></div> <br>
 <div></div>
 
     <div id="container">
         
         <div class="programming"> <h2 class="title">Programmering</h2>
-        <div class="lineyellow"></div>
+        <div class="lineyellow"></div> <br>
             <h3><img src="..\assets\Fuze-Merra-round.png" alt=""> Mehrdad Badeie</h3> 
             <h3><img src="..\assets\Fuze_Tommi_Round.png" alt=""> Tommi Ahonen</h3> 
             <h3><img src="..\assets\Fuze-Thomas-round.png" alt=""> Thomas Haraldsson</h3> 
         </div>
 
         <div class="design"><h2 class="title">Design</h2>
-        <div class="lineblue"></div>
+        <div class="lineblue"></div> <br>
             <h3><img src="..\assets\Fuze_Elli_Round.png" alt=""> Elinur Hakbilen</h3> 
             <h3><img src="..\assets\Fuze_Filip_Round.png" alt=""> Filip Alexandrow</h3> 
             <h3><img src="..\assets\Fuze_Jonas_Round.png" alt=""> Jonas Johansson</h3> 
