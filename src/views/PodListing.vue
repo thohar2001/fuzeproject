@@ -183,17 +183,10 @@ h1 a.link {
 option, select {
   color: white;
 }
-canvas {
-  background-color: rgb(255, 255, 255);
-  border: 1px solid black;
-  width: 320px;
-  height: 320px;
-}
 
-@media only screen and (min-width: 800px) {
-  canvas {
-    width: 800px;
-    height: 800px;
+@media only screen and (max-width: 800px) {
+  .carden {
+    width: 15em;
   }
 }
 

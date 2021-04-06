@@ -132,6 +132,7 @@ label {
   font-size: large;
   background-color: #25283C;
   border-radius: 1em;
+  outline: none;
 }
 
 .option {

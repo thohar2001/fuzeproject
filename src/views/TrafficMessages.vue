@@ -71,10 +71,10 @@ export default {
 
         // Enable only button that is indicated by parameter "priority". Or enable all buttons.
         enableButtonByPriority(priorityNumber, enableAllButtons) {
-            document.getElementById("allvarlig").disabled=(priorityNumber==1 || enableAllButtons? false : true)
-            document.getElementById("medel").disabled=(priorityNumber==2 || enableAllButtons? false : true)
-            document.getElementById("mindre").disabled=(priorityNumber==3 || enableAllButtons? false : true)
-            document.getElementById("kommunal").disabled=(priorityNumber==4 || enableAllButtons? false : true)
+            document.getElementById("allvarlig").disabled = (priorityNumber==1 || enableAllButtons? false : true)
+            document.getElementById("medel").disabled = (priorityNumber==2 || enableAllButtons? false : true)
+            document.getElementById("mindre").disabled = (priorityNumber==3 || enableAllButtons? false : true)
+            document.getElementById("kommunal").disabled = (priorityNumber==4 || enableAllButtons? false : true)
         }   
     }
 }

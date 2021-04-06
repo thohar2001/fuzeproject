@@ -41,4 +41,10 @@ p {
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
+
+@media only screen and (max-width: 800px) {
+  p {
+    font-size: 5em;
+  }
+}
 </style>
