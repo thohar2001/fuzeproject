@@ -156,9 +156,9 @@ h2 {
   margin-top: 0;
 }
 
-.link {
-  color: #ffffff;
-  font-size: xx-large;
+h1 a.link {
+  font-size: x-large;
+  color: red;
 }
 
 .carden {
@@ -185,4 +185,7 @@ canvas {
     height: 800px;
   }
 }
+
+
+
 </style>
