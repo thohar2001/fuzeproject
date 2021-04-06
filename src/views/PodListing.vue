@@ -62,7 +62,6 @@ export default {
 
   data() {
     return {
-      vueCanvas: null,
       categoryList: [],
       programListAll: [],
       programListFilteredByCategory: [],
