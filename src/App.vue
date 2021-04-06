@@ -1,17 +1,14 @@
 <template>
     <Menu></Menu>
     <br>
-    <Footer></Footer>
 </template>
 
 <script>
 import Menu from '../src/components/Menu.vue'
-import Footer from '../src/components/Footer.vue'
 
 export default {
   components: {
     Menu,
-    Footer,
   }
 }
 </script>
@@ -33,15 +30,11 @@ h1 {
 
 #nav a {
   font-weight: bold;
-  color: #25283C;;
 }
+
 
 #nav a.router-link-exact-active {
   color: #838383;
-}
-
-footer {
-  padding: 30px;
 }
 
 </style>
