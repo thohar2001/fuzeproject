@@ -26,7 +26,7 @@ h1 {
 
 #app {
   text-align: center;
-  color: #ffffff;
+
 }
 
 #nav {

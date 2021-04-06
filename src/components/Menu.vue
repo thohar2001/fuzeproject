@@ -24,5 +24,10 @@
   left: 20px;
   align-self: auto;
 }
+
+.nav {
+  background-color: white;
+}
+
 </style>
 

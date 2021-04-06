@@ -143,8 +143,9 @@ export default {
 </script>
 
 <style>
-a {
+a, a:hover, a:visited, a:link, a:active {
   color: #ffffff;
+  text-decoration: none;
 }
 
 h2 {
