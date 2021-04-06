@@ -2,7 +2,7 @@
 
 
 
-    <h1>Dagens trafikmeddelanden</h1>
+    <h2>Dagens trafikmeddelanden</h2>
     <div class="navtrafik">
     <button id="allvarlig" class="butt" type="button" @click="filterEventClassSerious(1)" value="1">Allvarlig</button>
     <button id="medel" class="butt" type="button" @click="filterEventClassSerious(2)" value="2">Medel</button>
@@ -91,6 +91,11 @@ export default {
 </script>
 
 <style scoped>
+
+    h2 {
+        color: white;
+    }
+
     .location {
         width: 100%;
         background-color: transparent;
