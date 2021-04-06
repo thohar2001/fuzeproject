@@ -8,7 +8,7 @@
     </div>
     <router-link id="aboutLink" to="/About">Om FUZE</router-link>
   </div>
-  <br>
+  <br><br>
   <router-view />
   <br>
   <br>
