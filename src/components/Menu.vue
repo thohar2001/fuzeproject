@@ -14,6 +14,7 @@
   <router-view />
 
   <div id="bottomNav">
+      <router-link id="startLink" to="/Start" class="trafik"><img src="..\assets\Logga.png" alt="logo" id="logo"></router-link>
       <router-link to="/" class="trafik">Trafik</router-link> 
       <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> 
       <router-link to="/musictimeline" class="populära">Topplåtar</router-link>
@@ -92,12 +93,23 @@ router-link {
 @media only screen and (min-width: 633px) {
   #bottomNav {
     display: none;
+    
   }
+
 }
 
 @media only screen and (max-width: 633px) {
   #nav {
     display: none;
+  }  
+  #logo {
+  bottom: 23px;
+  width: 1.5em;
+  height: auto;
+  position: absolute;
+  left: 5px;
+  align-self: auto;
+  background-color: white;
   }
 }
 
