@@ -1,17 +1,14 @@
 <template>
     <Menu></Menu>
     <br>
-    <Footer></Footer>
 </template>
 
 <script>
 import Menu from '../src/components/Menu.vue'
-import Footer from '../src/components/Footer.vue'
 
 export default {
   components: {
     Menu,
-    Footer,
   }
 }
 </script>

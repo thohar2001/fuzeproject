@@ -4,6 +4,7 @@
     <router-link to="/" class="trafik">Trafik</router-link> 
     <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> 
     <router-link to="/musictimeline" class="populära">Topplåtar</router-link>
+    <router-link to="/About" class="omfuze">OM fuze</router-link>
   </div>
   <br />
   <router-view />
@@ -31,10 +32,12 @@
   background-color: white;
 }
 
-.trafik, .podcirkel, .populära {
+.trafik, .podcirkel, .populära, .omfuze {
   background-color: white;
   margin: 1.5%;
+
 }
+
 
 </style>
 
