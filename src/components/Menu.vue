@@ -32,7 +32,7 @@
   position: fixed;
   bottom: 0px;
   background-color: white; 
-  font-size: large; 
+  font-size: medium; 
   font-weight: bold;
 }
 
@@ -45,7 +45,7 @@
   display: flex;
   justify-content:space-around;
   display: inline;
-  margin-left: 20%;
+  margin-left: 5%;
   background-color: white;
 }
 
@@ -84,7 +84,7 @@ router-link {
 
 .trafik, .podcirkel, .populära {
   text-decoration: none;
-  margin: 1.5em;
+  margin: 1.3em;
   background-color: white;
   color: #25283C;
   justify-content: space-evenly;
