@@ -1,6 +1,6 @@
 <template>
   <div id="nav" >
-    <router-link id="startLink" to="/Start" class="trafik"><img src="..\assets\Logga.png" alt="logo" id="logo"></router-link>
+    <router-link id="startLink" to="/Start" class="trafik"><img src="..\assets\FUZE_logo_red.png" alt="logo" id="logo"></router-link>
     <div id="linkNav" >
       <router-link to="/" class="trafik">Trafik</router-link> 
       <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> 
@@ -14,7 +14,7 @@
   <br>
   <br>
   <div id="bottomNav">
-      <router-link id="startLink" to="/Start" class="trafik"><img src="..\assets\Logga.png" alt="logo" id="logo"></router-link>
+      <router-link id="startLink" to="/Start" class="trafik"><img src="..\assets\FUZE_logo_red.png" alt="logo" id="logo"></router-link>
       <router-link to="/" class="trafik">Trafik</router-link> 
       <router-link to="/PodListing" class="podcirkel">Podcirkeln</router-link> 
       <router-link to="/musictimeline" class="populära">Topplåtar</router-link>
@@ -55,6 +55,7 @@
 }
 
 #aboutLink {
+  text-decoration: none;
   float:right;
   color: #7E163B;
   background-color: white;
