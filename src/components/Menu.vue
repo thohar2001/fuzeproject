@@ -8,7 +8,7 @@
     </div>
     <router-link id="aboutLink" to="/About">Om FUZE</router-link>
   </div>
-  <br><br>
+  <br><br><br>
   <router-view />
   <br>
   <br>
@@ -32,7 +32,7 @@
   position: fixed;
   bottom: 0px;
   background-color: white; 
-  font-size: large; 
+  font-size:1.2em; 
   font-weight: bold;
 }
 
@@ -45,7 +45,7 @@
   display: flex;
   justify-content:space-around;
   display: inline;
-  margin-left: 20%;
+  margin-left: 5%;
   background-color: white;
 }
 
@@ -65,7 +65,7 @@ router-link {
 }
 
 #nav {
-  font-size: large;
+  font-size: x-large;
   padding: 10px;
   width: 100%;
   z-index: 1;
