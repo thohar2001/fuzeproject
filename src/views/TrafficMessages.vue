@@ -191,4 +191,15 @@ export default {
         color: #666666;
     }
 
+
+    @media only screen and (max-width: 633px) {
+    button.butt {
+        margin-left: 3px;
+        margin-right: 3px;
+        font-size: 12px;
+        padding: 10px 10px;
+        width: 80px;
+        }
+    }
+
 </style>
