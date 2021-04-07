@@ -8,9 +8,9 @@ import About from '../views/About.vue'
 
 const routes = [
   {
-    path: '/Start',
-    name: 'Start',
-    component: StartPage,
+    path: '/TrafficMessages',
+    name: 'TrafficMessages',
+    component: TrafficMessages,
   },
   {
     path: '/About',
@@ -19,8 +19,8 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Home',
-    component: TrafficMessages
+    name: 'Start',
+    component: StartPage
   },
   {
     path: '/PodListing',
