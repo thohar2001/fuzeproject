@@ -66,7 +66,7 @@ export default {
         },
         xaxis: {
           labels: {
-            show: true
+            show: false
           },
           axisTicks: {
             show: false,
