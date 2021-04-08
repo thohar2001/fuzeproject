@@ -5,7 +5,7 @@ NOTE: You will need Node.js for this project (download: https://nodejs.org/en/)
 
 To run this project:
 
-1. Clone this repository
+1. Clone this repository -> git clone https://github.com/thohar2001/fuzeproject.git
 
 2. Go to your local files that you've downloaded and run "npm install" in a terminal of choice.
 
