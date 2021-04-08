@@ -104,7 +104,7 @@ export async function getAllChannelIds() {
 }
 
 export async function getTopFiveArtists(year, month) {
-  
+  // 164 = P3
   const channels = [164];
   const artistCount = await countArtistOccurences(channels, year, month);
   return getTopArtists(artistCount, 5);
