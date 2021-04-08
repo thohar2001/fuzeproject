@@ -1,5 +1,5 @@
 <template>
-  <h2>Topplåtar (P3)</h2>
+  <h2>Topplåtar för P3 (spelningar / månad)</h2>
 
   <label >
     <select class="dropdown" ref="year" @change="dateUpdated">
