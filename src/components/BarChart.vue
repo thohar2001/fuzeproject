@@ -69,6 +69,18 @@ export default {
           axisBorder: {
             show: false
           },
+        title: {
+          text: "Spelningar/mån",
+          offsetX: 0,
+          offsetY: 0,
+          style: {
+              color: undefined,
+              fontSize: '12px',
+              fontFamily: 'Helvetica, Arial, sans-serif',
+              fontWeight: 600,
+              cssClass: 'apexcharts-xaxis-title',
+          },
+      },
         },
         yaxis: {
           reversed: this.reversed,
@@ -199,6 +211,18 @@ export default {
         },
       xaxis: {
         categories: newXaxisCategoriesValues,
+        title: {
+          text: "Spelningar/mån",
+          offsetX: 0,
+          offsetY: 0,
+          style: {
+              color: undefined,
+              fontSize: '12px',
+              fontFamily: 'Helvetica, Arial, sans-serif',
+              fontWeight: 600,
+              cssClass: 'apexcharts-xaxis-title',
+          },
+        },
       },
 
       // theme: {
