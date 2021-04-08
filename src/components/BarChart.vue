@@ -66,7 +66,7 @@ export default {
         },
         xaxis: {
           labels: {
-            show: false
+            show: true
           },
           axisTicks: {
             show: false,
@@ -76,7 +76,7 @@ export default {
             show: false
           },
         title: {
-          text: "Spelningar/mån",
+          text: "Spelningar / månad",
           offsetX: 0,
           offsetY: 0,
           style: {
