@@ -1,12 +1,10 @@
 <template>
   <br />
-  <div v-if="showLoading" style="color: white">LOADING...</div>
   <p id="month" :style="'color: ' + colorMonth">
   {{ new Date(this.startdate).getMonthName() }}
   </p>
   <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
 
-  <div v-if="showCharts">
   <div id="app">
     <apexchart
       :ref="uniqueID"
@@ -17,7 +15,6 @@
       :class="reversed ? 'reversed' : 'regular'"
     ></apexchart>
   </div>
-</div>
 </template>
 
 <script>
@@ -35,8 +32,6 @@ export default {
       barColors: ['#FA3C4C', '#FFC300', '#44BEC7', '#0084FF'],
       uniqueID: "chart" + this.id,
       colorMonth: null,
-      showLoading: true,
-      showCharts: false,
       //ApexCharts model 3.0 start
 
       series: [
@@ -128,6 +123,23 @@ export default {
     // set a color for this month
     this.colorMonth = this.barColors[this.barcolor % 4]
     theColor.push(this.barColors[this.barcolor % 4])  
+    
+    /*
+    if(this.barcolor % 4 == 0) {
+      theColor.push(this.barColors[0])
+    }
+    else if(this.barcolor % 4 == 1) {
+      theColor.push(this.barColors[1])
+    }
+    else if(this.barcolor % 4 == 2) {
+      theColor.push(this.barColors[2])
+    }
+    else if(this.barcolor % 4 == 3) {
+      theColor.push(this.barColors[3])
+    }
+    */
+
+    
 
     let date = new Date(this.startdate);
     const toplist = await getTopFiveArtists(
@@ -151,9 +163,6 @@ export default {
     }
     // Add play amounts to chart.
     this.series[0]["data"] = newSeriesDataValues;
-
-    this.showLoading = false;
-    this.showCharts = true;
     // Add tracks to chart. P.S. The chart will be refreshed once this object is set.
     this.chartOptions = {
       chart: {
@@ -241,5 +250,7 @@ export default {
     padding-left: 0%;
   }
 }
+
+
 
 </style>
