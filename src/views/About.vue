@@ -1,6 +1,6 @@
 <template>
 <h1 class="firsttitle">Om FUZE</h1>
-<p class="infotext">Version 2.2.0 <br>Denna sidan använder Sveriges Radios öpnna API</p>
+<p class="infotext">Version 2.2.0 <br>Denna sidan använder Sveriges Radios öppna API</p>
 <div class="linered"></div> <br>
 <div></div>
 
