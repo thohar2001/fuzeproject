@@ -4,8 +4,10 @@
   {{ new Date(this.startdate).getMonthName() }}
   </p>
   <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
-
-  <div id="app">
+    <div class="spinner-border" role="status" v-if="showLoading" style="color: white">
+      <span class="sr-only"></span>
+    </div>
+  <div id="app" ref="app">
     <apexchart
       :ref="uniqueID"
       width="100%"
@@ -15,8 +17,8 @@
       :class="reversed ? 'reversed' : 'regular'"
     ></apexchart>
   </div>
+  
 </template>
-
 <script>
 import VueApexCharts from "vue3-apexcharts";
 import { getTopFiveArtists } from "../lib/data.js";
@@ -32,6 +34,7 @@ export default {
       barColors: ['#FA3C4C', '#FFC300', '#44BEC7', '#0084FF'],
       uniqueID: "chart" + this.id,
       colorMonth: null,
+      showLoading: true,
       //ApexCharts model 3.0 start
 
       series: [
@@ -116,6 +119,9 @@ export default {
 
   async mounted() {
 
+    // Hide all charts while they are loading
+    this.$refs.app.style.display = "none";
+
     // The chart chooses color depending on the value of the bar chart (barcolor prop)
     // 4 different colors to choose from 
     let theColor = []
@@ -123,23 +129,6 @@ export default {
     // set a color for this month
     this.colorMonth = this.barColors[this.barcolor % 4]
     theColor.push(this.barColors[this.barcolor % 4])  
-    
-    /*
-    if(this.barcolor % 4 == 0) {
-      theColor.push(this.barColors[0])
-    }
-    else if(this.barcolor % 4 == 1) {
-      theColor.push(this.barColors[1])
-    }
-    else if(this.barcolor % 4 == 2) {
-      theColor.push(this.barColors[2])
-    }
-    else if(this.barcolor % 4 == 3) {
-      theColor.push(this.barColors[3])
-    }
-    */
-
-    
 
     let date = new Date(this.startdate);
     const toplist = await getTopFiveArtists(
@@ -156,11 +145,13 @@ export default {
       artist = track.split(":")[0];
       song = track.split(":")[1].split("¤")[0];
       amountOfTimesPlayed = track.split("¤")[1];
-
-
       newSeriesDataValues.push(amountOfTimesPlayed);
       newXaxisCategoriesValues.push([artist, song]);
     }
+
+    // Show charts again because they have finished loading
+    this.$refs.app.style.display = "block";
+    this.showLoading = false;
     // Add play amounts to chart.
     this.series[0]["data"] = newSeriesDataValues;
     // Add tracks to chart. P.S. The chart will be refreshed once this object is set.
