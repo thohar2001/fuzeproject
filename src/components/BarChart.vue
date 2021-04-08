@@ -1,10 +1,10 @@
 <template>
-  <p id="month" :style="'color: ' + colorMonth">
+  <span style="display: inline"><h1 id="month" :style="'color: ' + colorMonth">
   {{ new Date(this.startdate).getMonthName() }}
-  </p>
+  </h1></span>
   <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
   <template v-if="showLoading" style="color: white">
-    <div class="spinner-border" role="status" style="color: white">
+    <div class="spinner-border" role="status" style="color: white;">
       <span class="sr-only"></span>
     </div>
   </template>
