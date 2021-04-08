@@ -4,9 +4,13 @@
   {{ new Date(this.startdate).getMonthName() }}
   </p>
   <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
-    <div class="spinner-border" role="status" v-if="showLoading" style="color: white">
+  <template v-if="showLoading" style="color: white">
+    Loading... 
+    <div class="spinner-border" role="status" style="color: white">
       <span class="sr-only"></span>
     </div>
+  </template>
+
   <div id="app" ref="app">
     <apexchart
       :ref="uniqueID"
@@ -196,12 +200,7 @@ export default {
       xaxis: {
         categories: newXaxisCategoriesValues,
       },
-      yaxis: {
-        reversed: this.reversed,
-        axisTicks: {
-          show: true,
-        },
-      },
+
       // theme: {
       //   palette: ['palette1', 'palette2', 'palette3']
       // },
