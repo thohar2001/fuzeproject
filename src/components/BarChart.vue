@@ -5,7 +5,6 @@
   </p>
   <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
   <template v-if="showLoading" style="color: white">
-    Loading... 
     <div class="spinner-border" role="status" style="color: white">
       <span class="sr-only"></span>
     </div>
