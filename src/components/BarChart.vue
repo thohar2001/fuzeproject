@@ -65,6 +65,12 @@ export default {
           enabled: true,
         },
         xaxis: {
+          labels: {
+            show: false
+          },
+          axisTicks: {
+            show: false,
+          },
           categories: [],
           axisBorder: {
             show: false
@@ -85,7 +91,7 @@ export default {
         yaxis: {
           reversed: this.reversed,
           axisTicks: {
-            show: true,
+            show: false,
           },
         },
         grid: {
