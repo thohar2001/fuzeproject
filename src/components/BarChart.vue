@@ -1,5 +1,4 @@
 <template>
-  <br />
   <p id="month" :style="'color: ' + colorMonth">
   {{ new Date(this.startdate).getMonthName() }}
   </p>
