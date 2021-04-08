@@ -1,16 +1,15 @@
 <template>
-  <br />
-  <p id="month" :style="'color: ' + colorMonth">
-  {{ new Date(this.startdate).getMonthName() }}
-  </p>
+  <h1 id="month" :style="'color: ' + colorMonth">
+      {{ new Date(this.startdate).getMonthName() }}
+  </h1>
   <!-- <div :id="uniqueID" :class="reversed ? 'reversed' : 'regular'"></div> -->
   <template v-if="showLoading" style="color: white">
-    <div class="spinner-border" role="status" style="color: white">
+    <div class="spinner-border" role="status" style="color: white;">
       <span class="sr-only"></span>
     </div>
   </template>
 
-  <div id="app" ref="app">
+  <div ref="app">
     <apexchart
       :ref="uniqueID"
       width="100%"
@@ -20,7 +19,6 @@
       :class="reversed ? 'reversed' : 'regular'"
     ></apexchart>
   </div>
-  
 </template>
 <script>
 import VueApexCharts from "vue3-apexcharts";
