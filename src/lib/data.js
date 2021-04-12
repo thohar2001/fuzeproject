@@ -8,7 +8,6 @@ export function unixTimeToReadable(date) {
     let readableDate = new Date(Number(millis));
     // let theHour = readableDate.getHours();
     // readableDate.setHours(theHour+1);
-    
     return readableDate.toLocaleString();
 }
 
