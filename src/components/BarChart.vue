@@ -200,6 +200,7 @@ function getApexChartsSettingsObject(
     },
   };
 
+  // In a reversed barchart Y-axis is placed on right-hand side of barchart.
   if (reversedChartBoolean) {
     settingsObject.yaxis = {
       reversed: reversedChartBoolean,
