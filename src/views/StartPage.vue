@@ -20,10 +20,8 @@ div {
   position:fixed;
   padding:0;
   margin:0;
-
-  top: 0;
+  top: 1;
   left:0;
-  z-index: 0;
   width: 100%;
   height: 100%;
 }
@@ -34,17 +32,17 @@ p {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 15em;
-  overflow: hidden;
   background: white;
-  background-repeat: no-repeat;
   background-size: 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
-
+/* Change font size of logo in mobile version */
 @media only screen and (max-width: 800px) {
   p {
     font-size: 5em;
+    /* Margin bottom so that the logo will appear in the middle */
+    margin-bottom: 2em;
   }
 }
 </style>

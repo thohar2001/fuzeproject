@@ -1,18 +1,16 @@
-<template>
-<h1 class="firsttitle">Om FUZE</h1>
+<template><br>
+<h1 class="firsttitle">Om FUZE</h1> 
 <p class="infotext">Version 2.2.0 <br>Denna sidan använder Sveriges Radios öppna API</p>
 <div class="linered"></div> <br>
 <div></div>
 
     <div id="container">
-        
         <div class="programming"> <h2 class="title">Programmering</h2>
         <div class="lineyellow"></div> <br>
             <h3><img src="..\assets\Fuze-Merra-round.png" alt=""> Mehrdad Badeie</h3> 
             <h3><img src="..\assets\Fuze_Tommi_Round.png" alt=""> Tommi Ahonen</h3> 
             <h3><img src="..\assets\Fuze-Thomas-round.png" alt=""> Thomas Haraldsson</h3> 
         </div>
-
         <div class="design"><h2 class="title">Design</h2>
         <div class="lineblue"></div> <br>
             <h3><img src="..\assets\Fuze_Elli_Round.png" alt=""> Elinur Hakbilen</h3> 
@@ -21,13 +19,7 @@
             <h3><img src="..\assets\Fuze_Rita_Round.png" alt=""> Rita Anthony</h3> 
         </div>
     </div>
-
 </template>
-
-<script>
-
-</script>
-
 
 <style scoped>
 
@@ -35,7 +27,7 @@
     margin-left: 5em;
 }
 
-
+/* This contains flexbox with 2 boxes (Programmering & Design and all of elements associated with it) */
 #container {
     margin-left: 5em;
     margin-top: 20px;
@@ -97,6 +89,7 @@ p {
     background:black;
 }
 
+/* Red, yellow and blue gradient lines */
 .linered {
     margin-left: 5em;
     background: -webkit-gradient(radial, 0% 50%, 0, 0% 50%, 350, from(rgb(250, 60, 76)), to(#25283C));

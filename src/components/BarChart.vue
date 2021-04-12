@@ -9,7 +9,7 @@
     </div>
   </template>
 
-  <div ref="app">
+  <div ref="chart">
     <apexchart
       :ref="uniqueID"
       width="100%"
@@ -22,7 +22,7 @@
 </template>
 <script>
 import VueApexCharts from "vue3-apexcharts";
-import { getTopFiveArtists } from "../lib/data.js";
+import { getTopFiveTracks } from "../lib/data.js";
 //import ApexCharts from "apexcharts";
 
 export default {
@@ -36,8 +36,6 @@ export default {
       uniqueID: "chart" + this.id,
       colorMonth: null,
       showLoading: true,
-      //ApexCharts model 3.0 start
-
       series: [
         {
           data: [],
@@ -45,7 +43,6 @@ export default {
       ],
 
       chartOptions: getApexChartsSettingsObject(this.reversed, [], []),
-      //ApexCharts 3.0 model ends
     };
   },
   props: {
@@ -55,7 +52,6 @@ export default {
     },
     startdate: {
       type: String,
-      //default: new Date().toISOString()
     },
     id: {
       type: String,
@@ -86,22 +82,20 @@ export default {
   },
 
   async mounted() {
-    // Hide all charts while they are loading
-    this.$refs.app.style.display = "none";
+    // Hide this barchart while data is being loaded for SR open API.
+    this.$refs.chart.style.display = "none";
 
     // The chart chooses color depending on the value of the bar chart (barcolor prop)
     // 4 different colors to choose from
-    let theColor = [];
+    let headingColor = [];
 
     // set a color for this month
     this.colorMonth = this.barColors[this.barcolor % 4];
-    theColor.push(this.barColors[this.barcolor % 4]);
+    headingColor.push(this.barColors[this.barcolor % 4]);
 
     let date = new Date(this.startdate);
-    const toplist = await getTopFiveArtists(
-      date.getFullYear(),
-      date.getMonth()
-    );
+    // Get top five tracks for this month in following format: "artist:title¤plays"
+    const toplist = await getTopFiveTracks(date.getFullYear(), date.getMonth() );
 
     let amountOfTimesPlayed;
     let artist;
@@ -110,25 +104,32 @@ export default {
     const newXaxisCategoriesValues = [];
     for (let track of toplist) {
       artist = track.split(":")[0];
+      // since we return the amount of plays in the track string,
+      // we can split with ¤
       song = track.split(":")[1].split("¤")[0];
       amountOfTimesPlayed = track.split("¤")[1];
+      // push amount of plays into an array called newSeriesDataValues
       newSeriesDataValues.push(amountOfTimesPlayed);
       newXaxisCategoriesValues.push([artist, song]);
     }
 
     // Show charts again because they have finished loading
-    this.$refs.app.style.display = "block";
+    this.$refs.chart.style.display = "block";
     this.showLoading = false;
     // Add play amounts to chart.
     this.series[0]["data"] = newSeriesDataValues;
 
     // Add tracks to chart. P.S. The chart won't be redrawn until this.chartOptions is replaced with a new object (as is done on the next line).
-    this.chartOptions = getApexChartsSettingsObject(this.reversed, theColor, newXaxisCategoriesValues);
+    this.chartOptions = getApexChartsSettingsObject(this.reversed, headingColor, newXaxisCategoriesValues);
   },
 };
 
 // Creates a new object containing all the necessary settings for the ApexChart barchart to be drawn.
-function getApexChartsSettingsObject(reversedChartBoolean, barColorArray, newXaxisCategoriesValuesArray) {
+function getApexChartsSettingsObject(
+  reversedChartBoolean,
+  barColorArray,
+  newXaxisCategoriesValuesArray
+) {
   let settingsObject = {
     chart: {
       type: "bar",
@@ -202,17 +203,12 @@ function getApexChartsSettingsObject(reversedChartBoolean, barColorArray, newXax
     settingsObject.yaxis = {
       reversed: reversedChartBoolean,
       opposite: reversedChartBoolean,
-      axisTicks: {
-        show: false,
-      },
     };
   }
 
   return settingsObject;
 }
 </script>
-
-
 
 <style>
 #month {

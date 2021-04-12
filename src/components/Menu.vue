@@ -8,6 +8,7 @@
     </div>
     <router-link id="aboutLink" to="/About">Om FUZE</router-link>
   </div>
+    <router-link to="/About" class="aboutusmobile">i</router-link>
   <br><br>
   <router-view />
   <br>
@@ -80,7 +81,6 @@ router-link {
   left: 20px;
   align-self: auto;
   background-color: white;
-  
 }
 
 .trafik, .podcirkel, .populära {
@@ -90,19 +90,35 @@ router-link {
   color: #25283C;
   justify-content: space-evenly;
 }
+/* display about us as icon when in mobile version */
+.aboutusmobile {
+  font-weight: 800;
+  width: 30px;
+  border-radius: 50%;
+  border: solid white;
+  margin-top: 10px;
+  margin-right: 15px;
+  text-decoration: none;
+  float:right;
+  color: #ffffff;
+  background-color: #25283C;
+}
 
+/* removes the bottom navigation bar when in desktop */
 @media only screen and (min-width: 633px) {
   #bottomNav {
     display: none;
     
   }
-
 }
 
+/* removes the top navigation bar when in mobile */
 @media only screen and (max-width: 633px) {
   #nav {
     display: none;
-  }  
+  } 
+
+  /* Make FUZE logo smaller and sit to the left on then nav bar  */ 
   #logo {
   bottom: 23px;
   width: 1.5em;

@@ -131,14 +131,6 @@ export default {
         box-shadow: none;
     }
 
-    /*.accordion-body {
-        border-radius: 25rem;
-    }*/
-
-
-    /* <!-- div.accordion[value="1"] > */
-
-
     div.accordion-item, button.accordion-button, div.accordion-body {
         color: rgb(255, 255, 255);
         font-weight: bold;
@@ -193,6 +185,7 @@ export default {
         color: #666666;
     }
 
+    /* if used on mobile, decrease size of filterbuttons to match same design as desktop */ 
     @media only screen and (max-width: 633px) {
     button.butt {
         margin-left: 3px;

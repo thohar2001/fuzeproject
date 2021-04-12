@@ -125,15 +125,31 @@ export async function getAllChannelIds() {
   }
   return result;
 }
-
-export async function getTopFiveArtists(year, month) {
+/**
+ * 
+ * Get top five tracks from P3 radio channel for indicated month.
+ * 
+ * @param  {Number} year Year for which to get toplist. E.g. 2019.
+ * @param  {Number} month Month in year for which to get toplist. E.g. 1 for January.
+ * @returns {Array.<String>} Each object has the format "artist:title¤plays".
+ */
+export async function getTopFiveTracks(year, month) {
   // 164 = P3
   const channels = [164];
-  const artistCount = await countArtistOccurences(channels, year, month);
-  return getTopArtists(artistCount, 5);
+  const trackCount = await countTrackOccurences(channels, year, month);
+  return getTopTracks(trackCount, 5);
 }
 
-export async function countArtistOccurences(channels, year, month) {
+/**
+ * Return number of plays for each track that have been played for indicated channel(s).
+ * 
+ * @param  {Array.<Number>} channel Channel ids of channels to retrieve data for.
+ * @param  {Number} year Year to retrieve data for (e.g. 2018)
+ * @param  {Number} month Month to retrieve data for (1=January)
+ * @returns {Map.<String, Number>} Tracks are stored as key = "artist:song" and value = number of plays in this month.
+ */
+export async function countTrackOccurences(channels, year, month) {
+  // We add one to month number because getDaysInMonth method is 1 based when it comes to month 
   const amountOfDays = getDaysInMonth(year, month);
   let firstOfMonth = new Date(year, month, 1);
   // make a map of artist name to how often that name occures
@@ -141,30 +157,48 @@ export async function countArtistOccurences(channels, year, month) {
   for (const id of channels) {
     // Loop the same amount of times as there are days in selected month
     for(let i = 1; i<=amountOfDays;i++) {
-      // For every iteration, add one day to the date.
-      firstOfMonth.setDate(firstOfMonth.getDate() + 1);
       // Get playlist for current date
       const playlist = await getPlaylist(id, firstOfMonth.toLocaleString().split('T')[0]);
       // Loop over the current playlist, update the artistCount map
       for (const song of playlist) {
         if (artistCount[song.artist+":"+song.title]) {
+          // if artist+title exists in map, add one to its value (play count)
           artistCount[song.artist+":"+song.title]++;
         } else {
+          // if artist+title does not exist in map, set play count (value) to 1.
           artistCount[song.artist+":"+song.title] = 1;
         }
       }
+      // For every iteration, add one day to the date.
+      firstOfMonth.setDate(firstOfMonth.getDate() + 1);
     }
   }
   return artistCount;
 }
 
-// 
+/**
+ * @param {Map.<String, Number>} artistCount Tracks stored as key = "artist:song" and value = number of plays in this month.
+ * @param {Number} numResults How many tracks to include in result (e.g. 5 = top 5 list).
+ */
+export function getTopTracks(artistCount, numResults) {
+  // make map into list of objects, sort them
+  // and get the top names
+  // return strings in the form of artist:song¤amount of plays
+  const artistList = [];
+  for (const name in artistCount) {
+    artistList.push({ name: name, count: artistCount[name] });
+  }
+  artistList.sort((o1, o2) => o2.count - o1.count);
+  return artistList.slice(0, numResults).map((o) => o.name + "¤" + o.count);
+}
+
+
 /**
  * Get the playlist for a specific radiochannel on a specific day.
  * 
- * @param  {} id Channel ID to get playlist for.
- * @param  {} date Date to get playlist for.
- * @returns [{Json}] Playlist
+ * @param  {Number} id Channel ID to get playlist for.
+ * @param  {String} date Date to get pl aylist for.
+ * @returns {Array.<Object>} All tracks that were played on date in question.
  */
 export async function getPlaylist(id, date) {
   if (!Number.isInteger(id)) {
@@ -179,7 +213,8 @@ export async function getPlaylist(id, date) {
 
 /**
  * Perform a fetch() operation to SR open API and retrieve a list of all available radioprogram categories.
- * @returns [{Array}] Objects containing fields 'id' (category id) and 'name' (categoryname).
+ * 
+ * @returns {Array.<Object>} Objects containing fields 'id' (category id) and 'name' (categoryname).
  */
 export async function getProgramCategories() {
   const endpoint = `${BASE_URL}/programcategories?format=json&pagination=false&size=500`;
@@ -192,25 +227,23 @@ export async function getProgramCategories() {
   return result;
 }
 
-
-export function getTopArtists(artistCount, numResults) {
-  // make map into list of objects, sort them
-  // and get the top names
-  const artistList = [];
-  for (const name in artistCount) {
-    artistList.push({ name: name, count: artistCount[name] });
-  }
-  artistList.sort((o1, o2) => o2.count - o1.count);
-  return artistList.slice(0, numResults).map((o) => o.name + "¤" + o.count);
-}
-
+/**
+ * Get the number of days in specified moth of specified year.
+ * 
+ * @param {Number} year Year (e.g. 2018)
+ * @param {Number} month Month (e.g. 3=March)
+ */
 export function getDaysInMonth(year, month) {
-  // Here January is 1 based
-  return new Date(year, month, 0).getDate();
+  // Here Months are 1 based.
+  // Because we enter 0 as day, it will return amount of days
+  // in previous month. Because of this, we have to add 1 to the month. 
+  return new Date(year, month + 1, 0).getDate();
 }
 
 /**
- * Perform a fetch() operation to SR open API and retrieve all Program
+ * Perform a fetch() operation to SR open API and retrieve all programs.
+ * 
+ * @returns [Array.<Object>] of all programs
  */
 export async function getAllPrograms() {
   const endpoint = `${BASE_URL}/programs/index?format=json&filter=program.haspod&filtervalue=true&pagination=false`;
@@ -224,8 +257,12 @@ export async function getAllPrograms() {
 }
 
 /**
- * Perform a fetch() operation to SR open API and retrieve all Podcasts.
-  * @returns [{Array}] All podcasts.
+ * Perform a fetch() operation to SR open API and retrieve all Podcasts for a specified radioprogram with specified length.
+ * 
+ * @param  {Number} programid Programme ID of programme to get podcats for.
+ * @param  {Number} durationMin Minimum length of podcast in minutes.
+ * @param  {Number} durationMax Maximum length of podcast in minutes.
+ * @returns [Array.<Object>] All podcasts. 
  */
 export async function getAllPods(programid, durationMin, durationMax) {
   const endpoint = `${BASE_URL}/podfiles?programid=${programid}&pagination=false&format=json`;

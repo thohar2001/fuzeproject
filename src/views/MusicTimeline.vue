@@ -58,8 +58,9 @@ export default {
         "Nov",
         "Dec",
         ],
-      yearList: [2018, 2019, 2020, 2021],
-      selectedYear: 2018,
+      // Array of years that will appear in dropdown menu
+      yearList: [2015, 2016, 2017, 2018, 2019, 2020, 2021],
+      selectedYear: 2015,
       monthsInYear: 12,
       dateUpdatedCounter: 0,
     };
@@ -67,14 +68,7 @@ export default {
   methods: {
     dateUpdated() {
       this.selectedYear = this.$refs.year.value;
-      console.log(this.selectedYear);
       this.dateUpdatedCounter++;
-    },
-
-    getComponentStartDate(komponentIndex) {
-      let year = this.yearList[this.$refs.year.selectedIndex];
-      let monthNumber = this.$refs.monthFrom.selectedIndex + komponentIndex;
-      return year + "-" + monthNumber + "-01";
     },
   },
   async mounted() {
