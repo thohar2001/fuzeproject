@@ -1,8 +1,8 @@
-// NB! This code is not very good by design
-// it should not be too copy-paste friendly =)
-
 export const BASE_URL = "https://api.sr.se/api/v2";
-
+/**
+ * Converts a date from unix timestamp format to a human readable String.
+ * @param  {} date
+ */
 export function unixTimeToReadable(date) {
     let millis = String(date).substring(6, 19);
     let readableDate = new Date(Number(millis));
@@ -12,13 +12,23 @@ export function unixTimeToReadable(date) {
     return readableDate.toLocaleString();
 }
 
-// gets current location of the user
+
+/**
+ * Gets current longitude and latitude of the user from the web-browser.
+ */
 function getPosition() {
   return new Promise((res, rej) => {
     navigator.geolocation.getCurrentPosition(res, rej);
   });
 }
-// calculates the distans between 2 cordinates
+
+/**
+ * Calculates the distans in km between 2 cordinates.
+ * @param  {String} lat1 Latitide 1.
+ * @param  {String} lon1 Longitude 1.
+ * @param  {String} lat2 Latitide 2.
+ * @param  {String} lon2 Longitude 2.
+ */
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -36,7 +46,9 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
-
+/**
+ * Perform a fetch() operation to SR open API and retrieve all new traffic messages.
+ */
 export async function getTrafficMessages() {
 
   // Get geographic coordinates of user
@@ -84,7 +96,10 @@ export async function getTrafficMessages() {
   })
   return result;
 }
-
+/**
+ * Performs performs a fetch() operation to an endpoint and returns the retrieved JSON object.
+ * @param  {String} url Address of endpoint to access.
+ */
 export async function fetchJson(url) {
   const response = await fetch(url);
   if (!response.ok) {
