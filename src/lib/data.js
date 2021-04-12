@@ -101,8 +101,9 @@ export async function getTrafficMessages() {
   })
   return result;
 }
+
 /**
- * Performs performs a fetch() operation to an endpoint and returns the retrieved JSON object.
+ * Performs a fetch() operation to an endpoint and returns the retrieved JSON object.
  * @param  {String} url Address of endpoint to access.
  */
 export async function fetchJson(url) {
