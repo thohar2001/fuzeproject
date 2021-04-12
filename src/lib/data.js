@@ -114,6 +114,19 @@ export async function fetchJson(url) {
   return response.json();
 }
 
+/**
+ * Perform a fetch() operation to SR open API and retrieve all channel ID:s
+ */
+export async function getAllChannelIds() {
+  const endpoint = `${BASE_URL}/channels?format=json&size=500`;
+  const response = await fetchJson(endpoint);
+  const result = [];
+  for (const channel of response.channels) {
+    result.push(channel.id);
+  }
+  return result;
+}
+
 export async function getTopFiveArtists(year, month) {
   // 164 = P3
   const channels = [164];
@@ -185,7 +198,9 @@ export function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();
 }
 
-
+/**
+ * Perform a fetch() operation to SR open API and retrieve all Program
+ */
 export async function getAllPrograms() {
   const endpoint = `${BASE_URL}/programs/index?format=json&filter=program.haspod&filtervalue=true&pagination=false`;
 
@@ -197,6 +212,9 @@ export async function getAllPrograms() {
   return result;
 }
 
+/**
+ * Perform a fetch() operation to SR open API and retrieve all Podcasts
+ */
 export async function getAllPods(programid, durationMin, durationMax) {
   const endpoint = `${BASE_URL}/podfiles?programid=${programid}&pagination=false&format=json`;
   const response = await fetchJson(endpoint);
