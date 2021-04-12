@@ -101,8 +101,9 @@ export async function getTrafficMessages() {
   })
   return result;
 }
+
 /**
- * Performs performs a fetch() operation to an endpoint and returns the retrieved JSON object.
+ * Performs a fetch() operation to an endpoint and returns the retrieved JSON object.
  * @param  {String} url Address of endpoint to access.
  */
 export async function fetchJson(url) {
@@ -111,16 +112,6 @@ export async function fetchJson(url) {
     throw new Error("response error");
   }
   return response.json();
-}
-
-export async function getAllChannelIds() {
-  const endpoint = `${BASE_URL}/channels?format=json&size=500`;
-  const response = await fetchJson(endpoint);
-  const result = [];
-  for (const channel of response.channels) {
-    result.push(channel.id);
-  }
-  return result;
 }
 
 export async function getTopFiveArtists(year, month) {
