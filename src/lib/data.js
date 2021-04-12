@@ -159,7 +159,14 @@ export async function countArtistOccurences(channels, year, month) {
   return artistCount;
 }
 
-// Get playlist for one day/date
+// 
+/**
+ * Get the playlist for a specific radiochannel on a specific day.
+ * 
+ * @param  {} id Channel ID to get playlist for.
+ * @param  {} date Date to get playlist for.
+ * @returns [{Json}] Playlist
+ */
 export async function getPlaylist(id, date) {
   if (!Number.isInteger(id)) {
     throw new Error(`${id} is not a valid channel id`);
@@ -171,6 +178,10 @@ export async function getPlaylist(id, date) {
   return response.song;
 }
 
+/**
+ * Perform a fetch() operation to SR open API and retrieve a list of all available radioprogram categories.
+ * @returns [{Array}] Objects containing fields 'id' (category id) and 'name' (categoryname).
+ */
 export async function getProgramCategories() {
   const endpoint = `${BASE_URL}/programcategories?format=json&pagination=false&size=500`;
   const response = await fetchJson(endpoint);
@@ -181,6 +192,7 @@ export async function getProgramCategories() {
   }
   return result;
 }
+
 
 export function getTopArtists(artistCount, numResults) {
   // make map into list of objects, sort them
@@ -213,7 +225,8 @@ export async function getAllPrograms() {
 }
 
 /**
- * Perform a fetch() operation to SR open API and retrieve all Podcasts
+ * Perform a fetch() operation to SR open API and retrieve all Podcasts.
+  * @returns [{Array}] All podcasts.
  */
 export async function getAllPods(programid, durationMin, durationMax) {
   const endpoint = `${BASE_URL}/podfiles?programid=${programid}&pagination=false&format=json`;
