@@ -68,11 +68,7 @@ export default {
     dateUpdated() {
       this.selectedYear = this.$refs.year.value;
       console.log(this.selectedYear);
-      //   Number(this.$refs.monthTo.selectedIndex) +
-      //   1 -
-      //   Number(this.$refs.monthFrom.selectedIndex);
       this.dateUpdatedCounter++;
-      //forceUpdate();
     },
 
     getComponentStartDate(komponentIndex) {
@@ -83,7 +79,6 @@ export default {
   },
   async mounted() {
     this.dateUpdated();
-    //console.log(getTopFiveArtists(2021, 1));
   },
 };
 </script>
@@ -108,8 +103,6 @@ label {
 }
 
 .option {
-  /* width: 10em;
-  height: 10em; */
   color: white;
   background-color: #25283C;
 }
