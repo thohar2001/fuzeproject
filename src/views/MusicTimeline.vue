@@ -9,35 +9,7 @@
     </select>
   </label>
 
-  <!-- <label>
-    From:
-    <select ref="monthFrom" @change="dateUpdated">
-      <option
-        v-for="(m, index) in monthlist"
-        :value="index + 1"
-        :key="index + 1"
-      >
-        {{ m }}
-      </option>
-    </select>
-  </label>
-
-  <label>
-    To:
-    <select ref="monthTo" @change="dateUpdated">
-      <option
-        v-for="(m, index) in monthlist"
-        :value="m"
-        :key="index + 1"
-        :selected="index == new Date().getMonth() ? true : false"
-      >
-        {{ m }}
-      </option>
-    </select>
-  </label> -->
-
   <!-- create barcharts for each month: every other barchart faces left and every other barchar faces right. -->
-
   <template v-for="i in monthsInYear">
     <template v-if="i % 2">
       <!-- create left facing barchart -->
