@@ -42,6 +42,11 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   return d;
 }
 
+/**
+ * Converts an angle from degress to radians.
+ * 
+ * @param  {Number} deg Angle in degrees.
+ */
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
@@ -95,8 +100,9 @@ export async function getTrafficMessages() {
   })
   return result;
 }
+
 /**
- * Performs performs a fetch() operation to an endpoint and returns the retrieved JSON object.
+ * Performs a fetch() operation to an endpoint and returns the retrieved JSON object.
  * @param  {String} url Address of endpoint to access.
  */
 export async function fetchJson(url) {
@@ -107,6 +113,9 @@ export async function fetchJson(url) {
   return response.json();
 }
 
+/**
+ * Perform a fetch() operation to SR open API and retrieve all channel ID:s
+ */
 export async function getAllChannelIds() {
   const endpoint = `${BASE_URL}/channels?format=json&size=500`;
   const response = await fetchJson(endpoint);
@@ -188,7 +197,9 @@ export function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();
 }
 
-
+/**
+ * Perform a fetch() operation to SR open API and retrieve all Program
+ */
 export async function getAllPrograms() {
   const endpoint = `${BASE_URL}/programs/index?format=json&filter=program.haspod&filtervalue=true&pagination=false`;
 
@@ -200,6 +211,9 @@ export async function getAllPrograms() {
   return result;
 }
 
+/**
+ * Perform a fetch() operation to SR open API and retrieve all Podcasts
+ */
 export async function getAllPods(programid, durationMin, durationMax) {
   const endpoint = `${BASE_URL}/podfiles?programid=${programid}&pagination=false&format=json`;
   const response = await fetchJson(endpoint);
