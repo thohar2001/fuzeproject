@@ -121,17 +121,14 @@ export default {
     this.showLoading = false;
     // Add play amounts to chart.
     this.series[0]["data"] = newSeriesDataValues;
-    // Add tracks to chart. P.S. The chart will be refreshed once this object is set.
 
+    // Add tracks to chart. P.S. The chart won't be redrawn until this.chartOptions is replaced with a new object (as is done on the next line).
     this.chartOptions = getApexChartsSettingsObject(this.reversed, theColor, newXaxisCategoriesValues);
   },
 };
 
-function getApexChartsSettingsObject(
-  reversedChartBoolean,
-  barColorArray,
-  newXaxisCategoriesValuesArray
-) {
+// Creates a new object containing all the necessary settings for the ApexChart barchart to be drawn.
+function getApexChartsSettingsObject(reversedChartBoolean, barColorArray, newXaxisCategoriesValuesArray) {
   let settingsObject = {
     chart: {
       type: "bar",
