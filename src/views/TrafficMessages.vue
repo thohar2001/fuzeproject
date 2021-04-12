@@ -54,14 +54,21 @@ export default {
         this.messagesOriginal = this.messages.slice();
     }, methods: {
         
+        /**
+         * User has pressed one of the priority level buttons in th the component: only show traffic messages of that priority level in this component/view. 
+         * Or if the same button was already depressed: show all types of traffic messages.
+         * @param  {Number} priorityNumber Priority level of button which was pressed: 1-4.
+        */
         async filterEventClassSerious(priorityNumber) {
             
             if(priorityNumber == this.currentPriority) {
+                // User has pressed the same button which was already depressed: start showing all trafic messages irrespective of priority level.
                 this.enableButtonByPriority(priorityNumber, true)
                 this.messages = await getTrafficMessages()
                 this.currentPriority = 0
             }
             else {
+                // This button wasn't depressed from before: start showing only trafic messages that correspond to this priority level.
                 this.enableButtonByPriority(priorityNumber, false)
                 this.messages = this.messagesOriginal.slice()
                 this.messages = this.messages.filter(message => message.priority == priorityNumber)
@@ -69,7 +76,11 @@ export default {
             }
         },
 
-        // Enable only button that is indicated by parameter "priority". Or enable all buttons.
+        /**
+         * Enable only the button that is indicated by parameter priorityNumber or disregard priorityNumber and enable all four buttons.
+         * @param  {Number} priorityNumber Priority level: 1-4
+         * @param  {Boolean} enableAllButtons Enables all buttons if true. Else enable only button indicated by priorityNumber.
+        */
         enableButtonByPriority(priorityNumber, enableAllButtons) {
             document.getElementById("allvarlig").disabled = (priorityNumber==1 || enableAllButtons? false : true)
             document.getElementById("medel").disabled = (priorityNumber==2 || enableAllButtons? false : true)
@@ -133,43 +144,33 @@ export default {
         font-weight: bold;
         font-size: large;
     }
-    
-    div.accordion-item[value="1"], button.accordion-button[value="1"], div.accordion-body[value="1"] {
-        background-color: rgb(241, 93, 93);
-    }
 
-    div.accordion-item[value="2"], button.accordion-button[value="2"], div.accordion-body[value="2"] {
-        background-color: rgb(255, 195, 0);
-    }
-
-    div.accordion-item[value="3"], button.accordion-button[value="3"], div.accordion-body[value="3"] {
-        background-color: rgb(68, 190, 199);
-    }
-
-    div.accordion-item[value="4"], button.accordion-button[value="4"], div.accordion-body[value="4"] {
-        background-color: rgb(0, 0, 0);
-    }
-
+    /* set color for horizontal line between traffic message heading and traffic message body */
     div.accordion-body {
         border-top: 1px dashed white;
     }
 
-    button[value="1"] {
-        background-color: rgb(250, 60, 76);
+    /* Color for button and traffic messages for priority=Allvarlig */
+    button[value="1"], div.accordion-item[value="1"], button.accordion-button[value="1"], div.accordion-body[value="1"] {
+        background-color: rgb(241, 93, 93);
     }
 
-    button[value="2"] {
+    /* Color for button and traffic messages for priority=Medel */
+    button[value="2"], div.accordion-item[value="2"], button.accordion-button[value="2"], div.accordion-body[value="2"] {
         background-color: rgb(255, 195, 0);
     }
 
-    button[value="3"] {
+    /* Color for button and traffic messages for priority=Mindre */
+    button[value="3"], div.accordion-item[value="3"], button.accordion-button[value="3"], div.accordion-body[value="3"] {
         background-color: rgb(68, 190, 199);
     }
 
-    button[value="4"] {
+    /* Color for button and traffic messages for priority=Kommunal */
+    button[value="4"], div.accordion-item[value="4"], button.accordion-button[value="4"], div.accordion-body[value="4"] {
         background-color: rgb(0, 0, 0);
     }
 
+    /* Additional formatting for the four priority level buttons */
     button.butt {
         border-radius: 25px;
         width: 130px;
@@ -185,12 +186,12 @@ export default {
         border: solid white 2px;
     }
 
+    /* What the priority level buttons look like when they are disabled/greyed out */
     button.butt:disabled {
         border: 1px solid #999999;
         background-color: #cccccc;
         color: #666666;
     }
-
 
     @media only screen and (max-width: 633px) {
     button.butt {
