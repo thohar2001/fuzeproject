@@ -1,6 +1,13 @@
 # Fuze-project
 
-A graphical UI for visualizing data extracted from [an open REST API](https://sverigesradio.se/oppetapi) provided by Sweden's national publicly funded radio network "Sveriges Radio". 
+A graphical web UI for visualizing data extracted from [Sveriges Radios öppna API](https://sverigesradio.se/oppetapi), a REST API provided by Sweden's national publicly funded radio network "Sveriges Radio".  The API provides information about past content related to certain Swedish radio stations. 
+
+This application is able to visualize the following information:
+1. Recent local traffic warnings/bulletins.  
+2. List of all podcast episodes released.
+3. Top 5 song played each month during one year.
+
+## Implementation
 
 Implemented using the Vue.js MVC frontend framework.  
 
