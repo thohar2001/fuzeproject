@@ -1,24 +1,24 @@
-NOTE: You will need Node.js for this project (download: https://nodejs.org/en/)
+# Fuze-project
 
-# fuze-project
+A graphical UI for visualizing data extracted from [an open REST API](https://sverigesradio.se/oppetapi) provided by Sweden's national publicly funded radio network "Sveriges Radio". 
+
+Implemented using the Vue.js MVC frontend framework.  
+
 ## Project setup
 
-To run this project:
+In order to run this project you will first need to:
 
-1. Clone this repository -> git clone https://github.com/thohar2001/fuzeproject.git
+1. Clone this project.
+2. Install Vue CLI version 3: `npm install -g @vue/cli@3`
+3. Install Dependencies: `npm install`.
 
-2. Go to your local files that you've downloaded and run "npm install" in a terminal of choice.
+### Compile and run
+From the terminal run `npm run serve`. This enables hot reload for development. 
 
-### Compile and hot-reload for development
-```
-npm run serve
-
-```
+After that you can use the application by opening http://localhost:8080 in your web browser.
 
 ### Compile and minify for production
-```
-npm run build
-```
+```npm run build```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
